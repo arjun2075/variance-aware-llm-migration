@@ -50,26 +50,42 @@ PUBLIC_RELEASE=1 pytest tests/test_no_proprietary_content.py -q
 python protocol/freeze_protocol.py verify --lock protocol/protocol_lock.json
 ```
 
-This prints `PROTOCOL VERIFICATION: FAIL`. Read the individual lines before
-concluding anything: **all corpus, prompt and protocol-document hashes verify
-unchanged**, and the only changed *source* files are `src/vaml/adapters/shim.py`
-and `scripts/run_experiment.py` — the **documented** mid-run auth-recovery fix
-from commit `e30c78e`, recorded in `EXECUTION_REPORT.md` §7, which touched
-execution transport only and altered no experimental condition.
+**This prints `PROTOCOL VERIFICATION: FAIL`, and that is the expected result for
+this public artifact.** It is a documented consequence of public-release
+sanitization, not drift and not a defect. The lock is deliberately left
+unfixed: re-pinning its hashes to match the sanitized files would make the
+summary line green while destroying the audit signal the lock exists to
+provide. Read the individual lines rather than the verdict.
 
-The lock was taken over a working tree that also contained compiled `__pycache__`
-`.pyc` files. Those are deliberately excluded from the release archive and are
-regenerated on import, so they are reported as changed or missing. Filter them
-out to see the signal:
+**What verifies unchanged — the part that matters scientifically:**
 
-```bash
-python protocol/freeze_protocol.py verify --lock protocol/protocol_lock.json \
-    | grep -v '\.pyc'
-```
+- **All 16 task-corpus hashes.** No corpus and no prompt was altered.
+- **All 1,320 numerical analysis values.** Re-running §4 from this tree
+  regenerates `results/analysis/pairwise_results.json` bit-for-bit
+  (`2195d0d414409db0...`). Against the private frozen artifact, **zero** numeric
+  values differ — the only differences are 56 occurrences of a model-id label.
+- Seeds, estimands, analysis semantics and the recorded ledger.
 
-One entry, `src/vaml/adapters/__pycache__/provider_route_A.cpython-311.pyc`, is a compiled
-adapter for the internal execution service whose source is not part of this
-artifact; see `README.md` §9.
+**Why hashes moved.** Six infrastructure/source files had docstrings and
+comments rewritten to remove corporate execution-environment identifiers:
+`src/vaml/adapters/shim.py`, `src/vaml/models.py`,
+`src/vaml/orchestration/rate_limits.py`, `scripts/run_experiment.py`,
+`scripts/qc_ceiling_check.py`, `scripts/smoke_test.py`. The rewrites are
+textual only and touch no executable logic. Two of these
+(`shim.py`, `run_experiment.py`) additionally carry the documented mid-run
+auth-recovery fix from commit `e30c78e`, recorded in `EXECUTION_REPORT.md` §7,
+which altered execution transport only and no experimental condition.
+
+`protocol/PROTOCOL.md` and four sections of `protocol/protocol_spec.json`
+(`execution_environment`, `model_conditions`, `protocol_id`,
+`public_api_replication`) also differ. These are identifier substitutions only
+— the execution environment's name, the incumbent's model-id label, and the
+protocol id suffix. **No experimental parameter changed**: repetition counts,
+task counts, estimands, tolerances, retry and exclusion rules, and the
+randomized schedule are all identical to the frozen protocol.
+
+Compiled `__pycache__` entries present in the private lock were removed here,
+since byte-caches are regenerated on import and are not shipped.
 
 ## 4. Reproduce the confirmatory analysis
 

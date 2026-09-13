@@ -1,9 +1,86 @@
 {
-  "protocol_id": "variance-aware-migration-v3",
-  "status": "FROZEN_PENDING_LAUNCH_APPROVAL",
+  "amendments": [
+    {
+      "aborted_calls_disposition": "82 calls preserved at results/aborted_qc_run/ for auditability, ledger sha256 01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4. EXCLUDED from every confirmatory analysis; enforced by tests/test_no_aborted_data.py.",
+      "date": "2026-09-09",
+      "discovery_point": "82 / 20160 calls (0.4%)",
+      "document": "protocol/AMENDMENT_001_max_tokens.md",
+      "id": "AMENDMENT_001_max_tokens",
+      "new_value": 8192,
+      "old_value": 2048,
+      "parameter": "uniform max_tokens for all five model conditions",
+      "per_model_ceilings": "EXPLICITLY REJECTED - would make the serving configuration non-uniform across the comparison and confound model identity with configuration",
+      "qc_verification": {
+        "all_outputs_parse": true,
+        "all_provenance_correct": true,
+        "artifact": "results/qc_ceiling_check.json",
+        "gemini_truncation_after": "0/7",
+        "gemini_truncation_before": "15/28 (54%)",
+        "other_models_truncated": 0,
+        "performed": "re-ran previously-used task/model combinations at 8192",
+        "verdict": "PASS"
+      },
+      "reason": "2048 was an implementation constant in the runner, not a frozen scientific parameter. Early QC found gemini-2.5-pro terminating with finish_reason=length on 15/28 calls (54%), producing truncated JSON, because it spends most of its budget on internal reasoning tokens (~0.13 chars/token vs ~4.5 for gpt-4o). This would have confounded model behaviour with an avoidable output-budget ceiling.",
+      "type": "pre-experiment protocol amendment",
+      "unchanged": "corpora, prompts, model ids, repetition counts, estimands, tolerances, retry/exclusion rules, randomization seed and schedule, metric definitions",
+      "uniform_across_all_models": true
+    }
+  ],
+  "analysis_code_version": {
+    "commit_requirement": "Analysis code must be committed to the approved research repository, and its commit SHA recorded, before execution.",
+    "environment": "research-recovery/env/requirements.lock.txt (53 pinned packages, verified from a clean venv) plus research-recovery/env/Dockerfile.",
+    "pinning": "Analysis code is frozen by file hashes recorded in protocol_lock.json (analysis_code_set_hash).",
+    "python": "3.11.14"
+  },
+  "confirmatory_vs_exploratory": {
+    "confirmatory": [
+      "Delta(A->B) per (pipeline, candidate, property) with hierarchical bootstrap CIs",
+      "classification against declared property-specific tolerances",
+      "tolerance sensitivity curves over the frozen sweep",
+      "P2 correctness-vs-behavior joint classification",
+      "P2 evidence-span and label correctness vs gold",
+      "structured-output invariant compliance",
+      "operational behavior (latency, tokens, retries)",
+      "leave-one-task-out sensitivity",
+      "semantic-matching threshold and second-representation sensitivity",
+      "execution-order effect diagnostic"
+    ],
+    "exploratory": [
+      "anything not listed above",
+      "the 20-task stress/robustness set per pipeline",
+      "any analysis added after unblinding"
+    ],
+    "labeling_requirement": "Every result in the manuscript is labeled confirmatory, secondary/descriptive, or exploratory. Additions after the freeze are exploratory by definition, regardless of motivation.",
+    "secondary_descriptive": [
+      "panel-average symmetric cross-minus-within statistic",
+      "cross-pipeline comparison of whether conclusions generalize"
+    ]
+  },
+  "execution_environment": {
+    "concurrency": {
+      "BLOCKER": "The brief requested controlled asynchronous concurrency. the managed execution path does NOT permit concurrent calls; calls must be serialized with a minimum inter-call interval. This is an environment constraint, documented rather than worked around. It changes the execution SCHEDULE only, not the study design: randomized interleaving is preserved as a seeded permutation walked one call at a time.",
+      "bedrock_min_interval_s": 15.0,
+      "evidence": "Confirmed operationally 2026-05-09: a 3s inter-call sleep still produced Bedrock 429s. The production client's 429 path uses 15/30/60s exponential backoff with jitter.",
+      "max_concurrency": 1,
+      "min_interval_s": 2.0,
+      "raise_condition": "Do not raise max_concurrency above 1 without written confirmation of a supported concurrency limit. Doing so risks 429 storms that would contaminate the latency and retry metrics the study measures.",
+      "rpm_limit": "UNKNOWN - no published per-Experience figure obtained; scheduler paces on inter-call interval instead",
+      "tpm_limit": "UNKNOWN - same"
+    },
+    "credential_handling": "environment / standard credential chain only; never committed",
+    "primary": "managed_execution_path",
+    "proprietary_separation": "No production prompt text, production source, internal URL, or credential is present. Enforced by tests/test_no_proprietary_content.py, which applies a stricter rule set under PUBLIC_RELEASE=1.",
+    "public_artifact_note": "Execution-infrastructure identifiers were removed from this public artifact because they are not required to reproduce any reported analysis. 'managed_execution_path' denotes the managed execution environment the confirmatory runs were issued through.",
+    "rationale": "Model access is confirmed for all five conditions in the Experience's catalog.",
+    "repository": "github.com/arjun2075/variance-aware-llm-migration (PUBLIC mirror)",
+    "transport": {
+      "mechanism": "transport-helper binary (cmd/transport-helper in the service module) over line-delimited JSON",
+      "payload_note": "managed execution path rejects model_parameters on this endpoint; max_tokens sent top-level. Frozen decoding condition unchanged.",
+      "reason": "plain HTTPS clients are rejected by the managed execution path's transport layer; the production Go client succeeds with identical credentials and headers",
+      "scope": "execution infrastructure only - no experimental condition changed"
+    }
+  },
   "framing": {
-    "primary_claim": "A model migration should be treated as a stochastic regression-testing problem: candidate behavior is evaluated relative to the incumbent's own output variability, separately for each pipeline property and application tolerance.",
-    "secondary_claim": "Migration compatibility is not a single property of two model names; it varies across pipeline, workload, output property, serving configuration, and tolerance.",
     "permitted_terminology": [
       "behavioral preservation",
       "migration compatibility",
@@ -11,35 +88,112 @@
       "property-specific equivalence",
       "substitutability relative to stated properties"
     ],
+    "primary_claim": "A model migration should be treated as a stochastic regression-testing problem: candidate behavior is evaluated relative to the incumbent's own output variability, separately for each pipeline property and application tolerance.",
     "prohibited_terminology": [
       "safe model swap",
       "safe to swap",
       "models are substitutable",
       "models are not substitutable"
     ],
-    "prohibited_terminology_note": "Safety language requires an independent application-level correctness criterion. Pipeline 2 supplies correctness for P2 properties ONLY; it does not license safety claims about Pipeline 1."
+    "prohibited_terminology_note": "Safety language requires an independent application-level correctness criterion. Pipeline 2 supplies correctness for P2 properties ONLY; it does not license safety claims about Pipeline 1.",
+    "secondary_claim": "Migration compatibility is not a single property of two model names; it varies across pipeline, workload, output property, serving configuration, and tolerance."
+  },
+  "git_commit": "be0c09dae246012560e73d77b73eaf1e786f1d83",
+  "historical_pilot_study": {
+    "permitted_use": [
+      "motivating evidence in the introduction",
+      "the source of the repetition-budget and task-count simulations",
+      "reproduction demonstration",
+      "comparison against the revised design"
+    ],
+    "prohibition": "Its results are NEVER merged into the new confirmatory grid, pooled with new runs, or used to compute confirmatory estimates.",
+    "reproduction_status": "21 results exactly reproduced, 3 with 1e-6 float drift, 0 disagreements. See REPRODUCTION_REPORT.md.",
+    "status": "The original 8-profile, 5-model, 5-repetition, 200-run experiment is a REPRODUCED MOTIVATING / PILOT STUDY."
+  },
+  "legacy_m6_artifact": {
+    "artifact": "m6_three_way_equivalence.csv / .md",
+    "authoritative_estimator": "run-level hierarchical bootstrap (publication_run_level_bootstrap.py lineage), distinct-repetitions off-diagonal treatment",
+    "documented_discrepancy": {
+      "boundary_difference": "approximately 0.0005: pair-level hierarchical CI upper bound -0.10047 (outside the -0.10 margin, hence rejected) vs run-level CI upper bound -0.09536 (inside, hence inconclusive)",
+      "cause": "different estimators, not an error in either",
+      "differing_metric": "M1.technical_craft",
+      "interpretation": "A 0.0005 shift in one CI bound flips a headline category. This is itself evidence for the revision's move away from a single universal tolerance.",
+      "legacy_pair_level_hierarchical_tally": "6 rejected / 4 inconclusive / 1 demonstrated",
+      "published_run_level_tally": "5 rejected / 5 inconclusive / 1 demonstrated"
+    },
+    "prohibition": "MUST NOT be used by any revised analysis or manuscript generation. All revised analysis uses ONE authoritative run-level estimator (the run-level hierarchical bootstrap).",
+    "retention": "Preserved for historical reproduction only. Regenerable byte-identically via research-recovery/sim/publication_m6_three_way.py (15 passing tests).",
+    "status": "DEPRECATED"
+  },
+  "model_conditions": {
+    "candidates": [
+      {
+        "key": "candidate_gpt54",
+        "model_id": "gpt-5.4-2026-03-05",
+        "pinned": true,
+        "provider_family": "openai",
+        "repetitions": 5
+      },
+      {
+        "key": "candidate_gemini25pro",
+        "limitation": "MUTABLE ALIAS - not a dated snapshot. Served weights may change during or between runs. Disclosed as a reproducibility limitation; the canonical returned model id is logged per call so any change is detectable after the fact.",
+        "model_id": "gemini-2.5-pro",
+        "pinned": false,
+        "provider_family": "google",
+        "repetitions": 5
+      },
+      {
+        "key": "candidate_nova_pro",
+        "model_id": "amazon.nova-pro-v1-0",
+        "pinned": true,
+        "provider_family": "amazon",
+        "repetitions": 5
+      },
+      {
+        "key": "candidate_llama4_maverick",
+        "model_id": "meta.llama4-maverick-17b-instruct-v1-0",
+        "pinned": true,
+        "provider_family": "meta",
+        "repetitions": 5
+      }
+    ],
+    "canonical_model_map": "protocol/canonical_model_map.json - probed live 2026-09-09; 3 of 5 ids are rewritten by the managed execution path",
+    "canonical_model_mismatch": "If the canonical returned model id does not match the frozen condition, FLAG the run. Never silently accept it.",
+    "incumbent": {
+      "key": "incumbent_gpt4o",
+      "model_id": "gpt-4o-2024-11-20",
+      "pinned": true,
+      "provider_family": "openai",
+      "repetitions": 8
+    },
+    "status": "FROZEN - availability confirmed in the model catalog",
+    "substitution_policy": "Do not request additional model access and do not substitute newer aliases unless a selected model becomes unavailable before execution. Any substitution is recorded with its date and the protocol is re-frozen."
+  },
+  "pairwise_estimands": {
+    "C_AB": "mean over the R_A x R_B incumbent-candidate cross product",
+    "W_A": "incumbent self-agreement: mean over DISTINCT-repetition within-incumbent pairs (off-diagonal treatment)",
+    "off_diagonal_requirement": "MANDATORY. Within-model comparisons are formed only over distinct original repetitions. The self-inclusive variant is retained as a labeled diagnostic only. Recovery confirmed the self-inclusive estimator puts the point estimate outside its own 95% CI for 6 of 11 metrics.",
+    "panel_average_status": "SECONDARY / DESCRIPTIVE ONLY. Computed via the same code path for comparability. Never the headline result.",
+    "primary": "Delta(A->B) = C_AB - W_A",
+    "replicates": 10000,
+    "resampling_unit": "two-level: task instance (cluster) with replacement, then repetition within task x model cell with replacement",
+    "seed": 20260803
   },
   "pipelines": {
     "P1": {
-      "name": "compound assessment pipeline (revised research version)",
-      "provenance": "revised research version of the recovered original 4-call scaffold",
       "call_sites": [
         "pr_signal",
         "review_signal",
         "synthesis",
         "deepen"
       ],
-      "prompt_policy": "NEWLY AUTHORED RESEARCH-ONLY PROMPTS, releasable in full. No proprietary artifact is a dependency of this study.",
       "correctness_criterion": "none - behavioral preservation only",
+      "name": "compound assessment pipeline (revised research version)",
+      "prompt_policy": "NEWLY AUTHORED RESEARCH-ONLY PROMPTS, releasable in full. No proprietary artifact is a dependency of this study.",
+      "provenance": "revised research version of the recovered original 4-call scaffold",
       "task_count": 60
     },
     "P2": {
-      "name": "ContractNLI document -> evidence extraction -> reasoning -> structured classification",
-      "dataset": "ContractNLI",
-      "dataset_license": "CC BY 4.0 (download gated behind click-through Terms of Use acceptance)",
-      "dataset_source": "https://stanfordnlp.github.io/contract-nli/",
-      "sampling_unit": "DOCUMENT (NDA), not document x hypothesis pair",
-      "sampling_rationale": "607 NDAs are each annotated against the same 17 hypotheses; sampling doc x hypothesis pairs would violate the cluster bootstrap's independence assumption.",
       "call_sites": [
         "extract_evidence",
         "assess_evidence",
@@ -47,121 +201,34 @@
         "verify"
       ],
       "correctness_criterion": "gold 3-way labels + gold char-indexed evidence spans + deterministic verbatim-grounding invariant",
-      "task_count": 60,
-      "gold_leakage_prohibition": "Gold labels and gold evidence spans are NEVER revealed to the model during inference. They are used only for post-hoc scoring."
+      "dataset": "ContractNLI",
+      "dataset_license": "CC BY 4.0 (download gated behind click-through Terms of Use acceptance)",
+      "dataset_source": "https://stanfordnlp.github.io/contract-nli/",
+      "gold_leakage_prohibition": "Gold labels and gold evidence spans are NEVER revealed to the model during inference. They are used only for post-hoc scoring.",
+      "name": "ContractNLI document -> evidence extraction -> reasoning -> structured classification",
+      "sampling_rationale": "607 NDAs are each annotated against the same 17 hypotheses; sampling doc x hypothesis pairs would violate the cluster bootstrap's independence assumption.",
+      "sampling_unit": "DOCUMENT (NDA), not document x hypothesis pair",
+      "task_count": 60
     }
   },
-  "task_corpora": {
-    "status": "BUILT AND FROZEN",
-    "P1": {
-      "primary": 60,
-      "stress": 20,
-      "source": "newly authored synthetic",
-      "heterogeneity_axes": [
-        "seniority",
-        "archetype",
-        "difficulty",
-        "ambiguity",
-        "evidence_volume",
-        "conflict_mode"
-      ],
-      "guarantee": "all axis signatures distinct; zero primary/stress overlap; no email, URL, or company string"
-    },
-    "P2": {
-      "primary": 60,
-      "stress": 20,
-      "dataset": "ContractNLI",
-      "license": "CC BY 4.0",
-      "sampling_unit": "document",
-      "guarantee": "one instance per document; zero primary/stress document overlap; gold labels balanced",
-      "gold_policy": "gold_label and gold_spans stored for SCORING ONLY; inference_view() strips them; enforced by tests/test_corpora.py",
-      "status": "BUILT AND FROZEN from real ContractNLI (official release, CC BY 4.0)",
-      "source_sha256": "dbceb356cd6203b35b27be94a5fa85e499a81c34c42c89ad53060b39f0257ba5",
-      "source_documents": 423
-    },
-    "stress_set_rule": "Frozen in advance, analysed and reported separately, NEVER merged into the primary sample and NEVER added because a primary result is inconclusive."
-  },
-  "public_research_prompts": {
-    "status": "AUTHORED AND FROZEN",
-    "P1": [
-      "stage1_pr_signal.md",
-      "stage2_review_signal.md",
-      "stage3_synthesis.md",
-      "stage4_deepen.md"
+  "pricing": {
+    "manifest": "protocol/pricing_manifest.json, built immediately before execution from protocol/pricing_manifest.template.json",
+    "post_execution": [
+      "record actual input/output token usage for every request",
+      "compute estimated cost from frozen prices",
+      "record actual provider-account spend where available"
     ],
-    "P2": [
-      "stage1_extract_evidence.md",
-      "stage2_assess_evidence.md",
-      "stage3_classify.md",
-      "stage4_verify.md"
+    "required_fields": [
+      "provider",
+      "exact model_id",
+      "standard input price",
+      "standard output price",
+      "batch input price if applicable",
+      "batch output price if applicable",
+      "pricing source URL",
+      "retrieval date"
     ],
-    "verbatim_reuse_check": "PASS - 6-gram shingle comparison against the historical production prompt found a single shared generic 6-gram ('no prose outside the json'). Comparison ran outside this repository; only the verdict is recorded. See prompts/pipeline1/VERBATIM_REUSE_CHECK.md.",
-    "release": "All eight prompts released in full with the paper."
-  },
-  "model_conditions": {
-    "status": "FROZEN - availability confirmed in the model catalog",
-    "incumbent": {
-      "key": "incumbent_gpt4o",
-      "model_id": "gpt-4o-2024-11-20",
-      "provider_family": "openai",
-      "pinned": true,
-      "repetitions": 8
-    },
-    "candidates": [
-      {
-        "key": "candidate_gpt54",
-        "model_id": "gpt-5.4-2026-03-05",
-        "provider_family": "openai",
-        "pinned": true,
-        "repetitions": 5
-      },
-      {
-        "key": "candidate_gemini25pro",
-        "model_id": "gemini-2.5-pro",
-        "provider_family": "google",
-        "pinned": false,
-        "repetitions": 5,
-        "limitation": "MUTABLE ALIAS - not a dated snapshot. Served weights may change during or between runs. Disclosed as a reproducibility limitation; the canonical returned model id is logged per call so any change is detectable after the fact."
-      },
-      {
-        "key": "candidate_nova_pro",
-        "model_id": "amazon.nova-pro-v1-0",
-        "provider_family": "amazon",
-        "pinned": true,
-        "repetitions": 5
-      },
-      {
-        "key": "candidate_llama4_maverick",
-        "model_id": "meta.llama4-maverick-17b-instruct-v1-0",
-        "provider_family": "meta",
-        "pinned": true,
-        "repetitions": 5
-      }
-    ],
-    "substitution_policy": "Do not request additional model access and do not substitute newer aliases unless a selected model becomes unavailable before execution. Any substitution is recorded with its date and the protocol is re-frozen.",
-    "canonical_model_mismatch": "If the canonical returned model id does not match the frozen condition, FLAG the run. Never silently accept it.",
-    "canonical_model_map": "protocol/canonical_model_map.json - probed live 2026-09-09; 3 of 5 ids are rewritten by the managed execution path"
-  },
-  "repetition_counts": {
-    "incumbent": 8,
-    "candidate": 5,
-    "justification": "REPETITION_BUDGET_ANALYSIS.md: R_A=8 is the point of diminishing returns (last step with increasing marginal return, -4.86%); R=10/12 add ~80% incumbent cost for 4.7pp and one extra resolved cell. Simulation is a lower bound (cannot show diversity benefit of genuinely new generations)."
-  },
-  "task_counts": {
-    "primary_per_pipeline": 60,
-    "stress_set_per_pipeline": 20,
-    "stress_set_rule": "The stress/robustness set is defined and frozen IN ADVANCE, analysed SEPARATELY, and reported separately. It is NEVER merged into the primary sample. It must NOT be added because a primary result is inconclusive.",
-    "justification": "TASK_COUNT_SENSITIVITY.md: 60 is the knee of the 1/sqrt(T) curve (8->60 cuts CI width 63.7%). Extrapolated from only 8 distinct profiles; absolute widths optimistic; NOT a power calculation."
-  },
-  "pairwise_estimands": {
-    "primary": "Delta(A->B) = C_AB - W_A",
-    "W_A": "incumbent self-agreement: mean over DISTINCT-repetition within-incumbent pairs (off-diagonal treatment)",
-    "C_AB": "mean over the R_A x R_B incumbent-candidate cross product",
-    "off_diagonal_requirement": "MANDATORY. Within-model comparisons are formed only over distinct original repetitions. The self-inclusive variant is retained as a labeled diagnostic only. Recovery confirmed the self-inclusive estimator puts the point estimate outside its own 95% CI for 6 of 11 metrics.",
-    "resampling_unit": "two-level: task instance (cluster) with replacement, then repetition within task x model cell with replacement",
-    "replicates": 10000,
-    "seed": 20260803,
-    "panel_average_status": "SECONDARY / DESCRIPTIVE ONLY. Computed via the same code path for comparability. Never the headline result."
+    "status": "documentation, NOT an experiment-approval gate"
   },
   "primary_metrics": {
     "P1": {
@@ -182,13 +249,13 @@
         "schema_violation_rate",
         "parse_failure_rate"
       ],
+      "correctness": [],
       "operational": [
         "latency_ms",
         "prompt_tokens",
         "completion_tokens",
         "retry_count"
-      ],
-      "correctness": []
+      ]
     },
     "P2": {
       "axis_1_incumbent_self_variation": [
@@ -225,50 +292,156 @@
       "verbatim_span_grounding_definition": "Every cited evidence span must appear verbatim (exact substring, after documented whitespace normalization) in the source document. Deterministic; requires no gold annotation."
     },
     "correctness_vs_behavior_decomposition": {
-      "requirement": "MANDATORY for P2. The analysis MUST distinguish a candidate that changes behavior but IMPROVES correctness from one that PRESERVES incumbent behavior while preserving an incumbent ERROR.",
+      "incumbent_error_subset": "Pre-register the subset of P2 instances the incumbent gets WRONG. Behavioral agreement measured on that subset is agreement-on-errors and must be reported separately.",
       "joint_classification": {
+        "cells": {
+          "changed_behavior_degraded_correctness": "genuine regression",
+          "changed_behavior_improved_correctness": "behavioral regression test FAILS but the candidate is BETTER - the central case a naive regression oracle gets wrong",
+          "preserved_behavior_preserved_correctness": "low-risk migration",
+          "preserved_behavior_preserved_error": "behavior preserved INCLUDING an incumbent error - NOT a success; flag explicitly"
+        },
         "dimensions": [
           "behavioral_preservation (Delta vs tolerance)",
           "correctness_change (candidate accuracy minus incumbent accuracy, with CI)"
         ],
-        "cells": {
-          "preserved_behavior_preserved_correctness": "low-risk migration",
-          "preserved_behavior_preserved_error": "behavior preserved INCLUDING an incumbent error - NOT a success; flag explicitly",
-          "changed_behavior_improved_correctness": "behavioral regression test FAILS but the candidate is BETTER - the central case a naive regression oracle gets wrong",
-          "changed_behavior_degraded_correctness": "genuine regression"
-        },
         "reporting": "Report the joint cell for every (candidate, property). Never report behavioral preservation for P2 without the paired correctness change."
       },
-      "incumbent_error_subset": "Pre-register the subset of P2 instances the incumbent gets WRONG. Behavioral agreement measured on that subset is agreement-on-errors and must be reported separately."
+      "requirement": "MANDATORY for P2. The analysis MUST distinguish a candidate that changes behavior but IMPROVES correctness from one that PRESERVES incumbent behavior while preserving an incumbent ERROR."
     },
     "metric_module_pinning": "Metric definitions are frozen by hashing the analysis code; see analysis_code_set_hash in protocol_lock.json."
   },
   "property_tolerances": {
-    "policy": "PROPERTY-SPECIFIC. A universal +/-0.10 threshold is NOT the headline result.",
-    "rationale": "In the original data 7 of 11 metrics change verdict between margins 0.05 and 0.15, and incumbent self-agreement is as low as 0.052 (M2.recommendations) - a 0.10 tolerance exceeds the entire signal for some properties.",
-    "tolerance_setting_rule": "Each property's tolerance is declared in advance with a written justification. Where no application-grounded justification exists, the property is reported on the sensitivity curve only and carries NO headline verdict.",
     "declared": {
-      "P2.label_accuracy_vs_gold": {
-        "tolerance": 0.05,
-        "justification": "classification correctness against gold labels is directly interpretable; a 5-point accuracy drop is a material regression"
+      "P1.behavioral_metrics": {
+        "justification": "NO application-grounded tolerance exists for P1 behavioral agreement. Reported on sensitivity curves only; no headline equivalence verdict. This is a deliberate change from the original study.",
+        "tolerance": null
       },
-      "P2.verbatim_span_grounding_rate": {
-        "tolerance": 0.01,
-        "justification": "a deterministic invariant; any measurable rate of ungrounded citations is a defect"
+      "P2.label_accuracy_vs_gold": {
+        "justification": "classification correctness against gold labels is directly interpretable; a 5-point accuracy drop is a material regression",
+        "tolerance": 0.05
       },
       "P2.schema_valid_rate": {
-        "tolerance": 0.05,
-        "justification": "operational integration threshold"
+        "justification": "operational integration threshold",
+        "tolerance": 0.05
       },
-      "P1.behavioral_metrics": {
-        "tolerance": null,
-        "justification": "NO application-grounded tolerance exists for P1 behavioral agreement. Reported on sensitivity curves only; no headline equivalence verdict. This is a deliberate change from the original study."
+      "P2.verbatim_span_grounding_rate": {
+        "justification": "a deterministic invariant; any measurable rate of ungrounded citations is a defect",
+        "tolerance": 0.01
       }
     },
     "legacy_comparison_margin": 0.1,
-    "legacy_comparison_note": "Retained ONLY to permit comparison with the original study. Not a primary tolerance."
+    "legacy_comparison_note": "Retained ONLY to permit comparison with the original study. Not a primary tolerance.",
+    "policy": "PROPERTY-SPECIFIC. A universal +/-0.10 threshold is NOT the headline result.",
+    "rationale": "In the original data 7 of 11 metrics change verdict between margins 0.05 and 0.15, and incumbent self-agreement is as low as 0.052 (M2.recommendations) - a 0.10 tolerance exceeds the entire signal for some properties.",
+    "tolerance_setting_rule": "Each property's tolerance is declared in advance with a written justification. Where no application-grounded justification exists, the property is reported on the sensitivity curve only and carries NO headline verdict."
+  },
+  "protocol_id": "variance-aware-migration-v3",
+  "public_api_replication": {
+    "purpose": "test whether the major qualitative findings reproduce outside the managed execution path; a robustness check, not a second confirmatory study",
+    "scope": "~10 P1 tasks and ~10 P2 tasks through personal/public provider APIs",
+    "status": "DEFERRED - not now",
+    "timing": "ONLY after the primary managed-execution-path experiment is complete. No personal API spend before then."
+  },
+  "public_research_prompts": {
+    "P1": [
+      "stage1_pr_signal.md",
+      "stage2_review_signal.md",
+      "stage3_synthesis.md",
+      "stage4_deepen.md"
+    ],
+    "P2": [
+      "stage1_extract_evidence.md",
+      "stage2_assess_evidence.md",
+      "stage3_classify.md",
+      "stage4_verify.md"
+    ],
+    "release": "All eight prompts released in full with the paper.",
+    "status": "AUTHORED AND FROZEN",
+    "verbatim_reuse_check": "PASS - 6-gram shingle comparison against the historical production prompt found a single shared generic 6-gram ('no prose outside the json'). Comparison ran outside this repository; only the verdict is recorded. See prompts/pipeline1/VERBATIM_REUSE_CHECK.md."
+  },
+  "randomization_procedure": {
+    "implementation": "A seeded permutation of the full (pipeline, task, model, repetition) tuple list, generated and hashed BEFORE execution.",
+    "order_effect_check": "Pre-registered: regress each primary metric on execution_order_index; report as a diagnostic.",
+    "randomization_seed": 20260803,
+    "rationale": "Reduces confounding from transient provider load and time-of-day effects; also spreads slow conditions across the run.",
+    "recorded_per_call": "execution_order_index and wall_clock_timestamp, enabling post-hoc tests for order and time effects.",
+    "scheme": "Execution is randomized/interleaved across model, task, and repetition. Model-major execution is PROHIBITED."
+  },
+  "repetition_counts": {
+    "candidate": 5,
+    "incumbent": 8,
+    "justification": "REPETITION_BUDGET_ANALYSIS.md: R_A=8 is the point of diminishing returns (last step with increasing marginal return, -4.86%); R=10/12 add ~80% incumbent cost for 4.7pp and one extra resolved cell. Simulation is a lower bound (cannot show diversity benefit of genuinely new generations)."
+  },
+  "retry_and_exclusion_rules": {
+    "exclusion_criteria": [
+      "transport failure after exhausting the frozen retry budget",
+      "canonical returned model ID does not match the requested condition",
+      "prompt context hash mismatch against the frozen prompt"
+    ],
+    "metric_eligibility": "Per-metric eligibility filtering is explicit and per-property. Analysis code must NOT assume a uniform panel: in the original data eligible cross pairs ranged 1767-2000 and within pairs 358-400 by metric.",
+    "no_post_hoc_exclusion": "No run may be excluded after seeing its metric values. Exclusions are determined by the frozen criteria above only.",
+    "retry_policy": "Frozen from the original harness: retries recorded per call with retry_count and retry_events. Retry limits and backoff are frozen at execution-config level and hashed.",
+    "run_acceptance": "A run is ACCEPTED if all pipeline calls returned and the run record validates. Schema violations and parse failures are DATA, not exclusion criteria - they are reported as compliance metrics."
+  },
+  "semantic_matching": {
+    "primary_cosine_threshold": 0.8,
+    "primary_embedding_model": "sentence-transformers/all-mpnet-base-v2",
+    "primary_embedding_revision": "e8c3b32edf5434bc2275fc9bab85f82640a19130",
+    "purpose_note": "The purpose is to establish whether conclusions depend on the matching implementation, NOT to select a favorable configuration. All variants are reported.",
+    "second_representation": "REQUIRED: a second reasonable embedding model, frozen before execution, to test whether qualitative conclusions depend on the matching implementation.",
+    "threshold_free_aggregate": "REQUIRED where computationally feasible: a threshold-free aggregate (e.g. mean maximum cosine) reported alongside the thresholded metric.",
+    "threshold_sensitivity": [
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9
+    ]
+  },
+  "status": "FROZEN_PENDING_LAUNCH_APPROVAL",
+  "task_corpora": {
+    "P1": {
+      "guarantee": "all axis signatures distinct; zero primary/stress overlap; no email, URL, or company string",
+      "heterogeneity_axes": [
+        "seniority",
+        "archetype",
+        "difficulty",
+        "ambiguity",
+        "evidence_volume",
+        "conflict_mode"
+      ],
+      "primary": 60,
+      "source": "newly authored synthetic",
+      "stress": 20
+    },
+    "P2": {
+      "dataset": "ContractNLI",
+      "gold_policy": "gold_label and gold_spans stored for SCORING ONLY; inference_view() strips them; enforced by tests/test_corpora.py",
+      "guarantee": "one instance per document; zero primary/stress document overlap; gold labels balanced",
+      "license": "CC BY 4.0",
+      "primary": 60,
+      "sampling_unit": "document",
+      "source_documents": 423,
+      "source_sha256": "dbceb356cd6203b35b27be94a5fa85e499a81c34c42c89ad53060b39f0257ba5",
+      "status": "BUILT AND FROZEN from real ContractNLI (official release, CC BY 4.0)",
+      "stress": 20
+    },
+    "status": "BUILT AND FROZEN",
+    "stress_set_rule": "Frozen in advance, analysed and reported separately, NEVER merged into the primary sample and NEVER added because a primary result is inconclusive."
+  },
+  "task_counts": {
+    "justification": "TASK_COUNT_SENSITIVITY.md: 60 is the knee of the 1/sqrt(T) curve (8->60 cuts CI width 63.7%). Extrapolated from only 8 distinct profiles; absolute widths optimistic; NOT a power calculation.",
+    "primary_per_pipeline": 60,
+    "stress_set_per_pipeline": 20,
+    "stress_set_rule": "The stress/robustness set is defined and frozen IN ADVANCE, analysed SEPARATELY, and reported separately. It is NEVER merged into the primary sample. It must NOT be added because a primary result is inconclusive."
   },
   "tolerance_sensitivity_ranges": {
+    "conclusion_requirement": "The main conclusion must survive changes in threshold. Any conclusion that holds only at one tolerance must be reported as tolerance-conditional.",
+    "required_outputs": [
+      "tolerance sensitivity curve per property per candidate",
+      "classification stability summary",
+      "the tolerance at which each verdict flips"
+    ],
     "sweep": [
       0.01,
       0.02,
@@ -279,178 +452,6 @@
       0.125,
       0.15,
       0.2
-    ],
-    "required_outputs": [
-      "tolerance sensitivity curve per property per candidate",
-      "classification stability summary",
-      "the tolerance at which each verdict flips"
-    ],
-    "conclusion_requirement": "The main conclusion must survive changes in threshold. Any conclusion that holds only at one tolerance must be reported as tolerance-conditional."
-  },
-  "semantic_matching": {
-    "primary_embedding_model": "sentence-transformers/all-mpnet-base-v2",
-    "primary_embedding_revision": "e8c3b32edf5434bc2275fc9bab85f82640a19130",
-    "primary_cosine_threshold": 0.8,
-    "threshold_sensitivity": [
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.9
-    ],
-    "second_representation": "REQUIRED: a second reasonable embedding model, frozen before execution, to test whether qualitative conclusions depend on the matching implementation.",
-    "threshold_free_aggregate": "REQUIRED where computationally feasible: a threshold-free aggregate (e.g. mean maximum cosine) reported alongside the thresholded metric.",
-    "purpose_note": "The purpose is to establish whether conclusions depend on the matching implementation, NOT to select a favorable configuration. All variants are reported."
-  },
-  "retry_and_exclusion_rules": {
-    "retry_policy": "Frozen from the original harness: retries recorded per call with retry_count and retry_events. Retry limits and backoff are frozen at execution-config level and hashed.",
-    "run_acceptance": "A run is ACCEPTED if all pipeline calls returned and the run record validates. Schema violations and parse failures are DATA, not exclusion criteria - they are reported as compliance metrics.",
-    "exclusion_criteria": [
-      "transport failure after exhausting the frozen retry budget",
-      "canonical returned model ID does not match the requested condition",
-      "prompt context hash mismatch against the frozen prompt"
-    ],
-    "metric_eligibility": "Per-metric eligibility filtering is explicit and per-property. Analysis code must NOT assume a uniform panel: in the original data eligible cross pairs ranged 1767-2000 and within pairs 358-400 by metric.",
-    "no_post_hoc_exclusion": "No run may be excluded after seeing its metric values. Exclusions are determined by the frozen criteria above only."
-  },
-  "randomization_procedure": {
-    "scheme": "Execution is randomized/interleaved across model, task, and repetition. Model-major execution is PROHIBITED.",
-    "rationale": "Reduces confounding from transient provider load and time-of-day effects; also spreads slow conditions across the run.",
-    "implementation": "A seeded permutation of the full (pipeline, task, model, repetition) tuple list, generated and hashed BEFORE execution.",
-    "randomization_seed": 20260803,
-    "recorded_per_call": "execution_order_index and wall_clock_timestamp, enabling post-hoc tests for order and time effects.",
-    "order_effect_check": "Pre-registered: regress each primary metric on execution_order_index; report as a diagnostic."
-  },
-  "confirmatory_vs_exploratory": {
-    "confirmatory": [
-      "Delta(A->B) per (pipeline, candidate, property) with hierarchical bootstrap CIs",
-      "classification against declared property-specific tolerances",
-      "tolerance sensitivity curves over the frozen sweep",
-      "P2 correctness-vs-behavior joint classification",
-      "P2 evidence-span and label correctness vs gold",
-      "structured-output invariant compliance",
-      "operational behavior (latency, tokens, retries)",
-      "leave-one-task-out sensitivity",
-      "semantic-matching threshold and second-representation sensitivity",
-      "execution-order effect diagnostic"
-    ],
-    "secondary_descriptive": [
-      "panel-average symmetric cross-minus-within statistic",
-      "cross-pipeline comparison of whether conclusions generalize"
-    ],
-    "exploratory": [
-      "anything not listed above",
-      "the 20-task stress/robustness set per pipeline",
-      "any analysis added after unblinding"
-    ],
-    "labeling_requirement": "Every result in the manuscript is labeled confirmatory, secondary/descriptive, or exploratory. Additions after the freeze are exploratory by definition, regardless of motivation."
-  },
-  "historical_pilot_study": {
-    "status": "The original 8-profile, 5-model, 5-repetition, 200-run experiment is a REPRODUCED MOTIVATING / PILOT STUDY.",
-    "prohibition": "Its results are NEVER merged into the new confirmatory grid, pooled with new runs, or used to compute confirmatory estimates.",
-    "permitted_use": [
-      "motivating evidence in the introduction",
-      "the source of the repetition-budget and task-count simulations",
-      "reproduction demonstration",
-      "comparison against the revised design"
-    ],
-    "reproduction_status": "21 results exactly reproduced, 3 with 1e-6 float drift, 0 disagreements. See REPRODUCTION_REPORT.md."
-  },
-  "legacy_m6_artifact": {
-    "status": "DEPRECATED",
-    "artifact": "m6_three_way_equivalence.csv / .md",
-    "retention": "Preserved for historical reproduction only. Regenerable byte-identically via research-recovery/sim/publication_m6_three_way.py (15 passing tests).",
-    "prohibition": "MUST NOT be used by any revised analysis or manuscript generation. All revised analysis uses ONE authoritative run-level estimator (the run-level hierarchical bootstrap).",
-    "authoritative_estimator": "run-level hierarchical bootstrap (publication_run_level_bootstrap.py lineage), distinct-repetitions off-diagonal treatment",
-    "documented_discrepancy": {
-      "legacy_pair_level_hierarchical_tally": "6 rejected / 4 inconclusive / 1 demonstrated",
-      "published_run_level_tally": "5 rejected / 5 inconclusive / 1 demonstrated",
-      "cause": "different estimators, not an error in either",
-      "differing_metric": "M1.technical_craft",
-      "boundary_difference": "approximately 0.0005: pair-level hierarchical CI upper bound -0.10047 (outside the -0.10 margin, hence rejected) vs run-level CI upper bound -0.09536 (inside, hence inconclusive)",
-      "interpretation": "A 0.0005 shift in one CI bound flips a headline category. This is itself evidence for the revision's move away from a single universal tolerance."
-    }
-  },
-  "analysis_code_version": {
-    "pinning": "Analysis code is frozen by file hashes recorded in protocol_lock.json (analysis_code_set_hash).",
-    "environment": "research-recovery/env/requirements.lock.txt (53 pinned packages, verified from a clean venv) plus research-recovery/env/Dockerfile.",
-    "python": "3.11.14",
-    "commit_requirement": "Analysis code must be committed to the approved research repository, and its commit SHA recorded, before execution."
-  },
-  "execution_environment": {
-    "primary": "managed_execution_path",
-    "repository": "github.com/arjun2075/variance-aware-llm-migration (PRIVATE)",
-    "rationale": "Model access is confirmed for all five conditions in the Experience's catalog.",
-    "concurrency": {
-      "max_concurrency": 1,
-      "BLOCKER": "The brief requested controlled asynchronous concurrency. the managed execution path does NOT permit concurrent calls; calls must be serialized with a minimum inter-call interval. This is an environment constraint, documented rather than worked around. It changes the execution SCHEDULE only, not the study design: randomized interleaving is preserved as a seeded permutation walked one call at a time.",
-      "min_interval_s": 2.0,
-      "bedrock_min_interval_s": 15.0,
-      "evidence": "Confirmed operationally 2026-05-09: a 3s inter-call sleep still produced Bedrock 429s. The production client's 429 path uses 15/30/60s exponential backoff with jitter.",
-      "rpm_limit": "UNKNOWN - no published per-Experience figure obtained; scheduler paces on inter-call interval instead",
-      "tpm_limit": "UNKNOWN - same",
-      "raise_condition": "Do not raise max_concurrency above 1 without written confirmation of a supported concurrency limit. Doing so risks 429 storms that would contaminate the latency and retry metrics the study measures."
-    },
-    "credential_handling": "environment / standard credential chain only; never committed",
-    "proprietary_separation": "No production prompt text, production source, internal URL, or credential is present. Enforced by tests/test_no_proprietary_content.py, which applies a stricter rule set under PUBLIC_RELEASE=1.",
-    "transport": {
-      "mechanism": "transport-helper binary (cmd/transport-helper in the service module) over line-delimited JSON",
-      "reason": "plain HTTPS clients are rejected by the managed execution path's transport layer; the production Go client succeeds with identical credentials and headers",
-      "scope": "execution infrastructure only - no experimental condition changed",
-      "payload_note": "managed execution path rejects model_parameters on this endpoint; max_tokens sent top-level. Frozen decoding condition unchanged."
-    }
-  },
-  "pricing": {
-    "status": "documentation, NOT an experiment-approval gate",
-    "manifest": "protocol/pricing_manifest.json, built immediately before execution from protocol/pricing_manifest.template.json",
-    "required_fields": [
-      "provider",
-      "exact model_id",
-      "standard input price",
-      "standard output price",
-      "batch input price if applicable",
-      "batch output price if applicable",
-      "pricing source URL",
-      "retrieval date"
-    ],
-    "post_execution": [
-      "record actual input/output token usage for every request",
-      "compute estimated cost from frozen prices",
-      "record actual provider-account spend where available"
     ]
-  },
-  "public_api_replication": {
-    "status": "DEFERRED - not now",
-    "scope": "~10 P1 tasks and ~10 P2 tasks through personal/public provider APIs",
-    "timing": "ONLY after the primary managed-execution-path experiment is complete. No personal API spend before then.",
-    "purpose": "test whether the major qualitative findings reproduce outside the managed execution path; a robustness check, not a second confirmatory study"
-  },
-  "git_commit": "be0c09dae246012560e73d77b73eaf1e786f1d83",
-  "amendments": [
-    {
-      "id": "AMENDMENT_001_max_tokens",
-      "type": "pre-experiment protocol amendment",
-      "date": "2026-09-09",
-      "parameter": "uniform max_tokens for all five model conditions",
-      "old_value": 2048,
-      "new_value": 8192,
-      "discovery_point": "82 / 20160 calls (0.4%)",
-      "reason": "2048 was an implementation constant in the runner, not a frozen scientific parameter. Early QC found gemini-2.5-pro terminating with finish_reason=length on 15/28 calls (54%), producing truncated JSON, because it spends most of its budget on internal reasoning tokens (~0.13 chars/token vs ~4.5 for gpt-4o). This would have confounded model behaviour with an avoidable output-budget ceiling.",
-      "uniform_across_all_models": true,
-      "per_model_ceilings": "EXPLICITLY REJECTED - would make the serving configuration non-uniform across the comparison and confound model identity with configuration",
-      "aborted_calls_disposition": "82 calls preserved at results/aborted_qc_run/ for auditability, ledger sha256 01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4. EXCLUDED from every confirmatory analysis; enforced by tests/test_no_aborted_data.py.",
-      "qc_verification": {
-        "performed": "re-ran previously-used task/model combinations at 8192",
-        "gemini_truncation_before": "15/28 (54%)",
-        "gemini_truncation_after": "0/7",
-        "other_models_truncated": 0,
-        "all_outputs_parse": true,
-        "all_provenance_correct": true,
-        "verdict": "PASS",
-        "artifact": "results/qc_ceiling_check.json"
-      },
-      "unchanged": "corpora, prompts, model ids, repetition counts, estimands, tolerances, retry/exclusion rules, randomization seed and schedule, metric definitions",
-      "document": "protocol/AMENDMENT_001_max_tokens.md"
-    }
-  ]
+  }
 }
