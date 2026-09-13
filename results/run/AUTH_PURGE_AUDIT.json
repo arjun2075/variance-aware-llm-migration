@@ -1,0 +1,40 @@
+{
+  "history": [
+    {
+      "at": "2026-09-10",
+      "backup": "results/run/calls.jsonl.pre_auth_purge",
+      "backup_sha256": "7e079603d96f130b3640a9489e14fb222a7e8e85220a9a24680dc0c99b21d5e0",
+      "calls_after": 4890,
+      "calls_before": 4905,
+      "cause": "laptop restart/suspend left the long-lived transport helper process with stale auth state; every model returned 403 for ~85s",
+      "event": "purged_post_suspend_auth_failures",
+      "failed_calls_removed": 12,
+      "fix": "TransportAdapter.restart() on 401/403, wired into the runner under the SAME frozen retry budget",
+      "rationale": "Frozen rule excludes a run on transport failure AFTER the retry budget is exhausted. These calls never received an effective retry: the transport helper returned 403 on every attempt because its process-level auth state was stale. They are infrastructure failures, not model behaviour, so the affected runs are re-executed rather than excluded. No successful call was removed and no scientific result was inspected.",
+      "runs_affected": 12,
+      "total_calls_removed": 15
+    },
+    {
+      "at": "2026-09-11",
+      "backup": "results/run/calls.jsonl.pre_purge2",
+      "backup_sha256": "871520f0a5f631913534e53f1ed4531729dc10efb055a240ca653a4ce9f65139",
+      "cause": "the managed execution path's credential helper exited non-zero on 4 isolated occasions (transient ticket-fetch failure); the run self-recovered each time",
+      "event": "purged_transient_credential_failures",
+      "failed_calls": 4,
+      "rationale": "Same reasoning as the first purge: the frozen rule excludes a run on transport failure AFTER the retry budget is exhausted. These are infrastructure ticket-fetch failures, so the affected runs are re-executed rather than excluded. No successful call removed; no scientific result inspected.",
+      "runs_affected": 4,
+      "total_calls_removed": 10
+    },
+    {
+      "at": "2026-09-11T20:35Z",
+      "backup": "results/run/calls.jsonl.pre_purge3",
+      "backup_sha256": "7a5738e45234ecae3a0a1e9345febd45e880d0e7169cacc2061b356bf2fcfce3",
+      "cause": "single transient credential-helper non-zero exit; run self-recovered within ~45s",
+      "event": "purged_transient_credential_failure",
+      "failed_calls": 1,
+      "rationale": "Same as prior purges: infrastructure ticket-fetch failure, never reached a model, so the affected run is re-executed rather than excluded. No successful call removed; no scientific result inspected.",
+      "runs_affected": 1,
+      "total_calls_removed": 3
+    }
+  ]
+}
