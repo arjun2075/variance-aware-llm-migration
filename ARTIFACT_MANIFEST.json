@@ -1,14 +1,26 @@
 {
   "artifact": "variance-aware-llm-migration",
+  "artifact_variant": "PUBLIC MIRROR",
   "authoritative_analysis": "results/analysis/ and results/strengthening/ at scientific freeze commit 3652060",
   "confirmatory_ledger": {
-    "results/run/calls.jsonl": "a082ecb2c54b6cc3e8fcbbb4d648c150921ff7aa1706789c0125e0706927063b"
+    "results/run/calls.jsonl": "c47939ee14844755621fd4e83422636bbd009ab7fee4ae5dd91a7b2d4ffe39a9"
   },
   "corpus_hashes": {
     "corpora/pipeline1/p1_primary.jsonl": "6215f2a99e5455bf06c1de3dd2f6482a77e66f7ffec2956942fa1f9c89d578a7",
     "corpora/pipeline1/p1_stress.jsonl": "bc6e5539d40acb25c57897a1fe48cbc3adaad8a8d9f4bfc043ac35c176e2a706",
     "corpora/pipeline2/p2_primary.jsonl": "53082a01241d248809021876dea1655d0834fec18ab4d035a9376470adc717f6",
     "corpora/pipeline2/p2_stress.jsonl": "f96006eebec93ca1ef64a46a4e0811eeeb381fcfab937e63be63a179546abb74"
+  },
+  "derived_from": {
+    "excluded": [
+      "compiled transport-helper binary",
+      "raw ContractNLI dataset",
+      "credential files",
+      "ledger backups"
+    ],
+    "note": "Execution-infrastructure identifiers were removed because they are not required to reproduce any reported analysis. The internal model request id gpt-4o-2024-11-20-oai was replaced 1:1 by the public id gpt-4o-2024-11-20; no numeric result changes. All 16 task-corpus hashes verify unchanged against the frozen protocol lock.",
+    "private_packaging_commit": "0c44b98d57ec4688135ea1948a8c04366c670f7e",
+    "scientific_freeze_commit": "3652060"
   },
   "design": {
     "bootstrap_replicates": 10000,
@@ -73,12 +85,12 @@
     "single_run_oracle_instability.csv",
     "tolerance_nonvacuity.csv"
   ],
-  "generated_at": "2026-09-13T07:51:45.472088+00:00",
+  "generated_at": "2026-09-13T08:04:27.297320+00:00",
   "non_authoritative_directories": {
     "results/aborted_qc_run/": "Quarantined pre-confirmatory QC data: 82 calls made at the pre-Amendment-001 output ceiling. NEVER used in any reported result. Retained for audit; its ledger hash is test-verified.",
     "results/analysis_BUGGY_DISCARDED/": "Output of a superseded analysis pass containing a corrected defect. NEVER authoritative. Retained only for auditability."
   },
-  "packaging_commit": "1825859280cc853581db7037331d31d218670034",
+  "packaging_commit": "dcb385ef66dd2afd7007327b86bb06da6cc0c795",
   "post_freeze_source_changes": {
     "commit": "e30c78e",
     "files": [
@@ -89,9 +101,9 @@
   },
   "primary_analysis_hashes": {
     "results/analysis/execution_summary.json": "70a3411bd05d80ae0da784751d9c3d890a2bc72dca26ca46d1eeb518a260d411",
-    "results/analysis/extended_analysis.json": "9d51bd311728d271c50ae845fd4a691f8db54873491520a2d3f231b439986866",
-    "results/analysis/pairwise_results.json": "4bfc7317e4a811cd96ba082f8e5c08664fb2e449c91d0281870ad94a81b2b5a5",
-    "results/analysis/replication_comparison.json": "456f700eb07be30e6404423a12b883e5c0ea02b8f38c504eba714f9560d8f72c"
+    "results/analysis/extended_analysis.json": "b3d0ecb7ca293775d53c729bb841983d9b010e0da5ea706307a9cd212cb738b8",
+    "results/analysis/pairwise_results.json": "2195d0d414409db0b32a3871547cc09e4aa8899b51eabb42c2e164395562ade8",
+    "results/analysis/replication_comparison.json": "c3aeddd8a3013a2ac92506f51aa96ddbf7669d218e79b7b6cbd2941f18651b11"
   },
   "prompt_hashes": {
     "prompts/pipeline1/stage1_pr_signal.md": "c890526ddb02c0d5ebdfb1f75548662f96f771f1906b87f39cbad07609448c05",
@@ -104,10 +116,10 @@
     "prompts/pipeline2/stage4_verify.md": "fbad3d8bf79d739abd1bd7f1f111ae12ddb666a917f9f8d92e1d0971b8b39d62"
   },
   "protocol_hashes": {
-    "protocol/PROTOCOL.md": "33b35948fcd763fe2d28a22a9fe30dd15d542cda35e6e6fd439c1a1cd1e513ca",
-    "protocol/canonical_model_map.json": "c3948c2ed51ddc46fec3de428cb13035f8159df37c27a30c8bedfbefe5e89627",
-    "protocol/protocol_lock.json": "60e33f5a4b5283b211bf358ef85b2f58e3868bdee51fba90d2e7a1f9b964ea7b",
-    "protocol/protocol_spec.json": "d6c4af9510b90d3b56a5eaab7bb582d7936a9d7b0763a4c4cf0e3203fe76c9cd",
+    "protocol/PROTOCOL.md": "a69780723c0dcc9e5aeefb6eb5b3e25053bacc8a2f6d306e2d804b3f869794ce",
+    "protocol/canonical_model_map.json": "c72f788f31476c622367c962585a294d665cd241d8f353456c828c0782104203",
+    "protocol/protocol_lock.json": "79daa80cb5c168845dbb948675f61dd575055e78d281b28ee698e35cb4d936f2",
+    "protocol/protocol_spec.json": "de2ec678fe5e0db7c2ae6d18b09667db7d87963342504686ee6dee74d9461cea",
     "protocol/replication_subset.json": "4492fd6ddf620bea7c853081c78a9dc6a26366e57ba027ef5885397e3cc17aae"
   },
   "reports": [

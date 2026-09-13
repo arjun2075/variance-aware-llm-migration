@@ -1,8 +1,8 @@
 # Artifact manifest
 
 **Scientific freeze commit:** `3652060`  
-**Packaging commit:** `1825859280cc853581db7037331d31d218670034`  
-**Generated:** 2026-09-13T07:51:45.472088+00:00  
+**Packaging commit:** `dcb385ef66dd2afd7007327b86bb06da6cc0c795`  
+**Generated:** 2026-09-13T08:04:27.297320+00:00  
 **Tests:** 451 passed, 1 skipped
 
 Machine-readable form: `ARTIFACT_MANIFEST.json`.
@@ -64,26 +64,26 @@ Machine-readable form: `ARTIFACT_MANIFEST.json`.
 
 | file | sha256 |
 |---|---|
-| `protocol/PROTOCOL.md` | `33b35948fcd763fe2d28a22a9fe30dd15d542cda35e6e6fd439c1a1cd1e513ca` |
-| `protocol/canonical_model_map.json` | `c3948c2ed51ddc46fec3de428cb13035f8159df37c27a30c8bedfbefe5e89627` |
-| `protocol/protocol_lock.json` | `60e33f5a4b5283b211bf358ef85b2f58e3868bdee51fba90d2e7a1f9b964ea7b` |
-| `protocol/protocol_spec.json` | `d6c4af9510b90d3b56a5eaab7bb582d7936a9d7b0763a4c4cf0e3203fe76c9cd` |
+| `protocol/PROTOCOL.md` | `a69780723c0dcc9e5aeefb6eb5b3e25053bacc8a2f6d306e2d804b3f869794ce` |
+| `protocol/canonical_model_map.json` | `c72f788f31476c622367c962585a294d665cd241d8f353456c828c0782104203` |
+| `protocol/protocol_lock.json` | `79daa80cb5c168845dbb948675f61dd575055e78d281b28ee698e35cb4d936f2` |
+| `protocol/protocol_spec.json` | `de2ec678fe5e0db7c2ae6d18b09667db7d87963342504686ee6dee74d9461cea` |
 | `protocol/replication_subset.json` | `4492fd6ddf620bea7c853081c78a9dc6a26366e57ba027ef5885397e3cc17aae` |
 
 ## Confirmatory ledger
 
 | file | sha256 |
 |---|---|
-| `results/run/calls.jsonl` | `a082ecb2c54b6cc3e8fcbbb4d648c150921ff7aa1706789c0125e0706927063b` |
+| `results/run/calls.jsonl` | `c47939ee14844755621fd4e83422636bbd009ab7fee4ae5dd91a7b2d4ffe39a9` |
 
 ## Primary analysis outputs
 
 | file | sha256 |
 |---|---|
 | `results/analysis/execution_summary.json` | `70a3411bd05d80ae0da784751d9c3d890a2bc72dca26ca46d1eeb518a260d411` |
-| `results/analysis/extended_analysis.json` | `9d51bd311728d271c50ae845fd4a691f8db54873491520a2d3f231b439986866` |
-| `results/analysis/pairwise_results.json` | `4bfc7317e4a811cd96ba082f8e5c08664fb2e449c91d0281870ad94a81b2b5a5` |
-| `results/analysis/replication_comparison.json` | `456f700eb07be30e6404423a12b883e5c0ea02b8f38c504eba714f9560d8f72c` |
+| `results/analysis/extended_analysis.json` | `b3d0ecb7ca293775d53c729bb841983d9b010e0da5ea706307a9cd212cb738b8` |
+| `results/analysis/pairwise_results.json` | `2195d0d414409db0b32a3871547cc09e4aa8899b51eabb42c2e164395562ade8` |
+| `results/analysis/replication_comparison.json` | `c3aeddd8a3013a2ac92506f51aa96ddbf7669d218e79b7b6cbd2941f18651b11` |
 
 ## Strengthening outputs
 
