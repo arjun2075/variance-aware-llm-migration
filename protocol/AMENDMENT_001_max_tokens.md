@@ -61,7 +61,14 @@ identity with configuration and weaken exactly the comparison being made.
 
 **Excluded from every confirmatory analysis.** Preserved for auditability at
 `results/aborted_qc_run/` with `ABORTED_RUN_NOTICE.json` and ledger SHA-256
-`01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4`.
+`94de7f82877138cd360e815ca6cdb210072e7af61f0057c72b7b236c93aa836c
+
+> **Public mirror note.** The private artifact records this ledger's SHA-256 as
+> `01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4`.
+> In this public mirror the digest differs because the incumbent condition's
+> internal vendor-routing request id was replaced by its public model id in 12
+> of the 82 quarantined records. All 82 records are present and no other field
+> changed; these records remain excluded from every reported result.`.
 
 - 82 calls, 0 errors, 0 retries, 0 provenance flags
 - 53,076 input / 74,316 output tokens

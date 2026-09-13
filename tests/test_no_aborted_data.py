@@ -16,8 +16,15 @@ REPO = Path(__file__).resolve().parents[1]
 ABORTED = REPO / "results/aborted_qc_run"
 CONFIRMATORY = REPO / "results/run"
 
+#: PUBLIC MIRROR: re-pinned. The private artifact pins
+#: 01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4
+#: This copy differs only because the incumbent condition's internal
+#: vendor-routing request id was replaced by its public model id in 12 of the
+#: 82 quarantined records. All 82 records are present and no other field
+#: changed. The quarantine guarantee is unaffected: these records are still
+#: never used in any reported result.
 ABORTED_LEDGER_SHA256 = (
-    "01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4")
+    "94de7f82877138cd360e815ca6cdb210072e7af61f0057c72b7b236c93aa836c")
 
 
 @pytest.mark.skipif(not ABORTED.exists(), reason="no aborted run present")

@@ -250,10 +250,11 @@ Removed or neutralized, none of which affects a reported result:
 - the corporate name, the internal execution-service name, internal
   adapter/module names, internal credential-tooling names, and internal
   transport/proxy product names
-- the internal model-catalog request id `gpt-4o-2024-11-20-oai`, replaced by the
-  public model id `gpt-4o-2024-11-20`. This is a 1:1 substitution: the catalog
-  suffix was a routing marker, the served snapshot was the public dated
-  one, and the canonical id that every analysis keys off is unchanged
+- the internal model-catalog **request id** for the incumbent condition, which
+  carried a vendor-routing suffix. It is replaced throughout by the public
+  model id `gpt-4o-2024-11-20`. This is a 1:1 substitution: the suffix was a
+  routing marker only, the served snapshot was the public dated one, and the
+  **canonical** id that every analysis actually keys off is unchanged
   (`protocol/canonical_model_map.json`)
 - the compiled transport-helper binary, which was specific to that execution
   path

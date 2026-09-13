@@ -18,7 +18,7 @@
       "credential files",
       "ledger backups"
     ],
-    "note": "Execution-infrastructure identifiers were removed because they are not required to reproduce any reported analysis. The internal model request id gpt-4o-2024-11-20-oai was replaced 1:1 by the public id gpt-4o-2024-11-20; no numeric result changes. All 16 task-corpus hashes verify unchanged against the frozen protocol lock.",
+    "note": "Execution-infrastructure identifiers were removed because they are not required to reproduce any reported analysis. The incumbent condition's internal vendor-routing request id was replaced 1:1 by the public model id gpt-4o-2024-11-20; no numeric result changes. All 16 task-corpus hashes verify unchanged against the frozen protocol lock.",
     "private_packaging_commit": "0c44b98d57ec4688135ea1948a8c04366c670f7e",
     "scientific_freeze_commit": "3652060"
   },
