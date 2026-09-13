@@ -1,0 +1,9 @@
+{
+  "n_ok": 1680,
+  "n_results": 1680,
+  "partition": "primary",
+  "pipeline": "p2_contractnli",
+  "serving_mode": "batch",
+  "stage": "assess_evidence",
+  "written_at": "2026-09-09T16:27:40.757600+00:00"
+}

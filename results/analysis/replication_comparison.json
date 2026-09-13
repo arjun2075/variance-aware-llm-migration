@@ -1,0 +1,478 @@
+[
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": 0.004465,
+    "direct": {
+      "C_AB": 0.845,
+      "W_A": 0.885714,
+      "ci": [
+        -0.17422,
+        0.071315
+      ],
+      "delta": -0.040714,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.83875,
+      "W_A": 0.883929,
+      "ci": [
+        -0.182672,
+        0.074248
+      ],
+      "delta": -0.045179,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M1.technical_execution",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.01,
+    "direct": {
+      "C_AB": 0.72,
+      "W_A": 0.875,
+      "ci": [
+        -0.370295,
+        0.028204
+      ],
+      "delta": -0.155,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.73,
+      "W_A": 0.875,
+      "ci": [
+        -0.353539,
+        0.030701
+      ],
+      "delta": -0.145,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M1.delivery_consistency",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.087678,
+    "direct": {
+      "C_AB": 0.48625,
+      "W_A": 0.828571,
+      "ci": [
+        -0.562108,
+        -0.123749
+      ],
+      "delta": -0.342321,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.5525,
+      "W_A": 0.807143,
+      "ci": [
+        -0.464664,
+        -0.0674
+      ],
+      "delta": -0.254643,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M1.collaboration",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.204464,
+    "direct": {
+      "C_AB": 0.53625,
+      "W_A": 0.785714,
+      "ci": [
+        -0.471507,
+        -0.02149
+      ],
+      "delta": -0.249464,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.655,
+      "W_A": 0.7,
+      "ci": [
+        -0.174168,
+        0.074872
+      ],
+      "delta": -0.045,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M1.impact",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": 0.0,
+    "direct": {
+      "C_AB": 0.0,
+      "W_A": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "delta": 0.0,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.0,
+      "W_A": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "delta": 0.0,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M1.opportunity_multiset",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": 0.0,
+    "direct": {
+      "C_AB": 0.0,
+      "W_A": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "delta": 0.0,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.0,
+      "W_A": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "delta": 0.0,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M1.opportunity_sequence",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.017236,
+    "direct": {
+      "C_AB": 0.049589,
+      "W_A": 0.152143,
+      "ci": [
+        -0.171404,
+        -0.041982
+      ],
+      "delta": -0.102554,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.048074,
+      "W_A": 0.133393,
+      "ci": [
+        -0.144498,
+        -0.029857
+      ],
+      "delta": -0.085318,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M2.strengths",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.01228,
+    "direct": {
+      "C_AB": 0.040405,
+      "W_A": 0.101786,
+      "ci": [
+        -0.112631,
+        -0.017031
+      ],
+      "delta": -0.061381,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.050542,
+      "W_A": 0.099643,
+      "ci": [
+        -0.099904,
+        -0.006014
+      ],
+      "delta": -0.049101,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M2.opportunities",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.018446,
+    "direct": {
+      "C_AB": 0.007708,
+      "W_A": 0.058333,
+      "ci": [
+        -0.103723,
+        -0.010255
+      ],
+      "delta": -0.050625,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.005917,
+      "W_A": 0.038095,
+      "ci": [
+        -0.076832,
+        -0.002805
+      ],
+      "delta": -0.032179,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M2.risks",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.027569,
+    "direct": {
+      "C_AB": 0.029973,
+      "W_A": 0.079889,
+      "ci": [
+        -0.098011,
+        -0.008132
+      ],
+      "delta": -0.049916,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.030132,
+      "W_A": 0.052479,
+      "ci": [
+        -0.069166,
+        0.013941
+      ],
+      "delta": -0.022347,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M2.recommendations",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": -0.032993,
+    "direct": {
+      "C_AB": 0.687876,
+      "W_A": 0.749173,
+      "ci": [
+        -0.099515,
+        -0.024897
+      ],
+      "delta": -0.061297,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "managed execution path": {
+      "C_AB": 0.710692,
+      "W_A": 0.738997,
+      "ci": [
+        -0.057229,
+        0.001439
+      ],
+      "delta": -0.028304,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "no_declared_tolerance"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P1",
+    "property": "M3.summary",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": 0.001786,
+    "direct": {
+      "C_AB": 0.9625,
+      "W_A": 0.932143,
+      "ci": [
+        -0.0375,
+        0.118502
+      ],
+      "delta": 0.030357,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "inconclusive"
+    },
+    "managed execution path": {
+      "C_AB": 0.95,
+      "W_A": 0.921429,
+      "ci": [
+        -0.033929,
+        0.113349
+      ],
+      "delta": 0.028571,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "inconclusive"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P2",
+    "property": "label_agreement",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": 0.017738,
+    "direct": {
+      "C_AB": 0.72,
+      "W_A": 0.839286,
+      "ci": [
+        -0.268525,
+        0.023294
+      ],
+      "delta": -0.119286,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "inconclusive"
+    },
+    "managed execution path": {
+      "C_AB": 0.714167,
+      "W_A": 0.85119,
+      "ci": [
+        -0.301338,
+        0.017559
+      ],
+      "delta": -0.137024,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "inconclusive"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P2",
+    "property": "cited_span_set_agreement",
+    "same_sign": true,
+    "same_verdict": true
+  },
+  {
+    "candidate": "gpt-5.4-2026-03-05",
+    "cis_overlap": true,
+    "delta_difference": 0.023631,
+    "direct": {
+      "C_AB": 0.67625,
+      "W_A": 0.817262,
+      "ci": [
+        -0.274827,
+        -0.008622
+      ],
+      "delta": -0.141012,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "inconclusive"
+    },
+    "managed execution path": {
+      "C_AB": 0.663333,
+      "W_A": 0.827976,
+      "ci": [
+        -0.313566,
+        -0.020417
+      ],
+      "delta": -0.164643,
+      "n_cross": 400,
+      "n_within": 280,
+      "verdict": "inconclusive"
+    },
+    "incumbent": "gpt-4o-2024-11-20",
+    "pipeline": "P2",
+    "property": "extracted_span_set_agreement",
+    "same_sign": true,
+    "same_verdict": true
+  }
+]

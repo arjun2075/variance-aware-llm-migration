@@ -1,0 +1,9 @@
+{
+  "n_ok": 560,
+  "n_results": 560,
+  "partition": "stress",
+  "pipeline": "p2_contractnli",
+  "serving_mode": "batch",
+  "stage": "extract_evidence",
+  "written_at": "2026-09-09T16:27:40.925533+00:00"
+}

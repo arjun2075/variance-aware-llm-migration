@@ -1,0 +1,60 @@
+{
+  "P1_difficulty": {
+    "p1_primary_001": "hard",
+    "p1_primary_022": "moderate",
+    "p1_primary_029": "very_hard",
+    "p1_primary_031": "hard",
+    "p1_primary_032": "very_hard",
+    "p1_primary_034": "clear_cut",
+    "p1_primary_040": "moderate",
+    "p1_primary_042": "hard",
+    "p1_primary_052": "clear_cut",
+    "p1_primary_058": "clear_cut"
+  },
+  "P1_task_ids": [
+    "p1_primary_058",
+    "p1_primary_031",
+    "p1_primary_040",
+    "p1_primary_032",
+    "p1_primary_034",
+    "p1_primary_042",
+    "p1_primary_022",
+    "p1_primary_029",
+    "p1_primary_052",
+    "p1_primary_001"
+  ],
+  "P2_gold_labels": {
+    "p2_primary_027": "NotMentioned",
+    "p2_primary_029": "Entailment",
+    "p2_primary_033": "NotMentioned",
+    "p2_primary_034": "Entailment",
+    "p2_primary_037": "NotMentioned",
+    "p2_primary_039": "Entailment",
+    "p2_primary_043": "Contradiction",
+    "p2_primary_047": "Contradiction",
+    "p2_primary_051": "Contradiction",
+    "p2_primary_056": "Contradiction"
+  },
+  "P2_task_ids": [
+    "p2_primary_047",
+    "p2_primary_039",
+    "p2_primary_037",
+    "p2_primary_043",
+    "p2_primary_029",
+    "p2_primary_027",
+    "p2_primary_056",
+    "p2_primary_034",
+    "p2_primary_033",
+    "p2_primary_051"
+  ],
+  "frozen_at": "2026-09-11T16:41:31.697063+00:00",
+  "frozen_before_any_results_inspected": true,
+  "n_per_pipeline": 10,
+  "note": "Selected while the confirmatory grid was still running and no agreement, correctness or equivalence result had been computed or viewed. This ordering is what makes the replication interpretable.",
+  "seed": 20260803,
+  "selection_rule": {
+    "P1": "round-robin across difficulty strata, seeded choice within stratum",
+    "P2": "round-robin across the three gold labels, seeded choice within label"
+  },
+  "selection_sha256": "ebaba1cb3d17fefbe65b29b61e0a769fde9c7882fe5bc61cebecfd2cd3b791b7"
+}

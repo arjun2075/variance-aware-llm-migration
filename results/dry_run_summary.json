@@ -1,0 +1,91 @@
+{
+  "adapter": "MockAdapter (no network)",
+  "blocks": [
+    {
+      "expected": 6720,
+      "match": true,
+      "partition": "primary",
+      "pipeline": "p1_assessment",
+      "pruned": 0,
+      "results": 6720,
+      "serving_mode": "batch",
+      "tasks": 60
+    },
+    {
+      "expected": 2240,
+      "match": true,
+      "partition": "stress",
+      "pipeline": "p1_assessment",
+      "pruned": 0,
+      "results": 2240,
+      "serving_mode": "batch",
+      "tasks": 20
+    },
+    {
+      "expected": 1120,
+      "match": true,
+      "partition": "sync_operational",
+      "pipeline": "p1_assessment",
+      "pruned": 0,
+      "results": 1120,
+      "serving_mode": "sync",
+      "tasks": 10
+    },
+    {
+      "expected": 6720,
+      "match": true,
+      "partition": "primary",
+      "pipeline": "p2_contractnli",
+      "pruned": 0,
+      "results": 6720,
+      "serving_mode": "batch",
+      "tasks": 60
+    },
+    {
+      "expected": 2240,
+      "match": true,
+      "partition": "stress",
+      "pipeline": "p2_contractnli",
+      "pruned": 0,
+      "results": 2240,
+      "serving_mode": "batch",
+      "tasks": 20
+    },
+    {
+      "expected": 1120,
+      "match": true,
+      "partition": "sync_operational",
+      "pipeline": "p2_contractnli",
+      "pruned": 0,
+      "results": 1120,
+      "serving_mode": "sync",
+      "tasks": 10
+    }
+  ],
+  "checks": {
+    "all_blocks_complete": true,
+    "all_custom_ids_roundtrip": true,
+    "batch_has_no_latency": true,
+    "execution_order_recorded": true,
+    "no_gold_leakage_in_rendered_prompts": true,
+    "no_unexpected_pruning": true,
+    "sync_records_latency": true
+  },
+  "dry_run_at": "2026-09-09T14:52:06.787199+00:00",
+  "gold_leaks": [],
+  "models": [
+    "gpt-4o-2024-11-20",
+    "gpt-5.4-2026-03-05",
+    "gemini-2.5-pro",
+    "amazon.nova-pro-v1-0",
+    "meta.llama4-maverick-17b-instruct-v1-0"
+  ],
+  "paid_api_calls": 0,
+  "rate_limit_policy": {
+    "bedrock_min_interval_s": 15.0,
+    "max_concurrency": 1,
+    "min_interval_s": 2.0
+  },
+  "seed": 20260803,
+  "status": "PASS"
+}

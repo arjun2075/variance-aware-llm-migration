@@ -1,0 +1,141 @@
+{
+  "artifact": "variance-aware-llm-migration",
+  "authoritative_analysis": "results/analysis/ and results/strengthening/ at scientific freeze commit 3652060",
+  "confirmatory_ledger": {
+    "results/run/calls.jsonl": "a082ecb2c54b6cc3e8fcbbb4d648c150921ff7aa1706789c0125e0706927063b"
+  },
+  "corpus_hashes": {
+    "corpora/pipeline1/p1_primary.jsonl": "6215f2a99e5455bf06c1de3dd2f6482a77e66f7ffec2956942fa1f9c89d578a7",
+    "corpora/pipeline1/p1_stress.jsonl": "bc6e5539d40acb25c57897a1fe48cbc3adaad8a8d9f4bfc043ac35c176e2a706",
+    "corpora/pipeline2/p2_primary.jsonl": "53082a01241d248809021876dea1655d0834fec18ab4d035a9376470adc717f6",
+    "corpora/pipeline2/p2_stress.jsonl": "f96006eebec93ca1ef64a46a4e0811eeeb381fcfab937e63be63a179546abb74"
+  },
+  "design": {
+    "bootstrap_replicates": 10000,
+    "candidate_repetitions": 5,
+    "candidates": 4,
+    "incumbent_repetitions": 8,
+    "p1_declared_tolerance": null,
+    "p2_declared_tolerance": 0.05,
+    "pipelines": 2,
+    "primary_tasks_per_pipeline": 60,
+    "stages_per_run": 4,
+    "stress_tasks_per_pipeline": 20,
+    "total_calls": 20160,
+    "total_runs": 5040
+  },
+  "embedding_model": {
+    "cosine_match_threshold": 0.8,
+    "name": "sentence-transformers/all-mpnet-base-v2",
+    "revision": "e8c3b32edf5434bc2275fc9bab85f82640a19130"
+  },
+  "environment": {
+    "dependency_lock": "requirements.lock.txt",
+    "dependency_lock_sha256": "bc3287a7a0a983f1b428eb5ba296cb82ba31e65f9d579cc3625eaf4ff882815f",
+    "platform": "macOS-15.7.1-arm64-arm-64bit",
+    "python_running_manifest": "3.11.14",
+    "python_version": "3.11.14"
+  },
+  "excluded_from_release": {
+    "*.log, results/run/*.pre_*": "logs and ledger backups",
+    ".git/": "version-control history",
+    ".replication.env, .env, vaml.env": "credential files, never committed",
+    ".venv/, venv/": "virtual environments",
+    "__pycache__/, *.pyc": "interpreter caches",
+    "data/raw/contractnli/*.json": "ContractNLI source files. CC BY 4.0 but distributed behind a click-through Terms of Use; not redistributed. Expected train.json SHA-256 dbceb356cd6203b35b27be94a5fa85e499a81c34c42c89ad53060b39f0257ba5",
+    "data/raw/contractnli/{LICENSE,TERMS}": "Upstream dataset license files, intentionally not re-published."
+  },
+  "expected_figures": [
+    "baseline_ablations.pdf",
+    "baseline_ablations.png",
+    "bootstrap_coverage.pdf",
+    "bootstrap_coverage.png",
+    "evaluation_budget_repetitions.pdf",
+    "evaluation_budget_repetitions.png",
+    "evaluation_budget_tasks.pdf",
+    "evaluation_budget_tasks.png",
+    "p2_tolerance_decision_curves.pdf",
+    "p2_tolerance_decision_curves.png",
+    "single_run_oracle_instability.pdf",
+    "single_run_oracle_instability.png",
+    "tolerance_nonvacuity.pdf",
+    "tolerance_nonvacuity.png"
+  ],
+  "expected_tables": [
+    "baseline_ablations.csv",
+    "bootstrap_coverage.csv",
+    "bootstrap_resolution_sensitivity.csv",
+    "contractnli_subset_representativeness.csv",
+    "evaluation_budget.csv",
+    "invalid_output_sensitivity.csv",
+    "p2_tolerance_transition_points.csv",
+    "simultaneous_inference.csv",
+    "single_run_oracle_instability.csv",
+    "tolerance_nonvacuity.csv"
+  ],
+  "generated_at": "2026-09-13T07:51:45.472088+00:00",
+  "non_authoritative_directories": {
+    "results/aborted_qc_run/": "Quarantined pre-confirmatory QC data: 82 calls made at the pre-Amendment-001 output ceiling. NEVER used in any reported result. Retained for audit; its ledger hash is test-verified.",
+    "results/analysis_BUGGY_DISCARDED/": "Output of a superseded analysis pass containing a corrected defect. NEVER authoritative. Retained only for auditability."
+  },
+  "packaging_commit": "1825859280cc853581db7037331d31d218670034",
+  "post_freeze_source_changes": {
+    "commit": "e30c78e",
+    "files": [
+      "src/vaml/adapters/shim.py",
+      "scripts/run_experiment.py"
+    ],
+    "reason": "Documented mid-run auth-recovery fix after a host restart left the execution transport helper with stale credentials. Recorded in EXECUTION_REPORT.md section 7. Changes execution infrastructure only; no experimental condition, corpus, prompt or estimand was altered."
+  },
+  "primary_analysis_hashes": {
+    "results/analysis/execution_summary.json": "70a3411bd05d80ae0da784751d9c3d890a2bc72dca26ca46d1eeb518a260d411",
+    "results/analysis/extended_analysis.json": "9d51bd311728d271c50ae845fd4a691f8db54873491520a2d3f231b439986866",
+    "results/analysis/pairwise_results.json": "4bfc7317e4a811cd96ba082f8e5c08664fb2e449c91d0281870ad94a81b2b5a5",
+    "results/analysis/replication_comparison.json": "456f700eb07be30e6404423a12b883e5c0ea02b8f38c504eba714f9560d8f72c"
+  },
+  "prompt_hashes": {
+    "prompts/pipeline1/stage1_pr_signal.md": "c890526ddb02c0d5ebdfb1f75548662f96f771f1906b87f39cbad07609448c05",
+    "prompts/pipeline1/stage2_review_signal.md": "ab627f4fb57d14f9bdfba95be1bffd29aa21f1d6de20f040f475916d94a59838",
+    "prompts/pipeline1/stage3_synthesis.md": "f9fecf027aec29cdb208eb360c95c85fc213001f4aec2ebfb3abe9a3c61970a1",
+    "prompts/pipeline1/stage4_deepen.md": "8adf88a4e3d821f3ac0a73b0f66e373683a9825e264ca31ab2fe922f89687f14",
+    "prompts/pipeline2/stage1_extract_evidence.md": "e507adf84dc969cd5bc1630a2e626e2a68713672af905cc0b26f68a707521e5c",
+    "prompts/pipeline2/stage2_assess_evidence.md": "6bb0bc9c4acd5c4ce240cc002b14ff8b4236e346caacce1af0feff386c6b692c",
+    "prompts/pipeline2/stage3_classify.md": "54b3d4875010e64e6761d71791d94be16c22d94cdb086cb5592dee043d7a3f7a",
+    "prompts/pipeline2/stage4_verify.md": "fbad3d8bf79d739abd1bd7f1f111ae12ddb666a917f9f8d92e1d0971b8b39d62"
+  },
+  "protocol_hashes": {
+    "protocol/PROTOCOL.md": "33b35948fcd763fe2d28a22a9fe30dd15d542cda35e6e6fd439c1a1cd1e513ca",
+    "protocol/canonical_model_map.json": "c3948c2ed51ddc46fec3de428cb13035f8159df37c27a30c8bedfbefe5e89627",
+    "protocol/protocol_lock.json": "60e33f5a4b5283b211bf358ef85b2f58e3868bdee51fba90d2e7a1f9b964ea7b",
+    "protocol/protocol_spec.json": "d6c4af9510b90d3b56a5eaab7bb582d7936a9d7b0763a4c4cf0e3203fe76c9cd",
+    "protocol/replication_subset.json": "4492fd6ddf620bea7c853081c78a9dc6a26366e57ba027ef5885397e3cc17aae"
+  },
+  "reports": [
+    "EXECUTION_REPORT.md",
+    "RESULTS_REPORT.md",
+    "REPLICATION_REPORT.md"
+  ],
+  "scientific_freeze_commit": "3652060",
+  "seeds": {
+    "bootstrap_seed": 20260803,
+    "corpus_build_seed": 20260803,
+    "execution_order_seed": 20260803,
+    "global_random_seed": 20260803,
+    "replication_subset_seed": 20269804
+  },
+  "strengthening_hashes": {
+    "results/strengthening/baseline_ablations.csv": "13bb17ada8dce9085cc58394dd0ed08bdd6afee854195218bf7fd7326b4433f6",
+    "results/strengthening/bootstrap_coverage.csv": "755d0a3a3def097eef0a38dfaaad8f1cc6438ff937fba2fb2bceca3197f6d2f0",
+    "results/strengthening/bootstrap_resolution_sensitivity.csv": "89d1ccf9ca84c23d68a42ae332e84efd57462587debe3e958b8842cf90c4dd84",
+    "results/strengthening/contractnli_subset_representativeness.csv": "d03ca7ff45084e98682e899c2b0dd668d3c1d11b3a2f84ee8fa0359cffd9b185",
+    "results/strengthening/evaluation_budget.csv": "4ad74d40066bba482d67a81a4da6108e304b98003ef906bb3cb2205d680fa550",
+    "results/strengthening/invalid_output_sensitivity.csv": "1eb48349bc1276f782c6b6bc5123ca171a2a24fc708e7c60fd972fe39765f48a",
+    "results/strengthening/p2_tolerance_transition_points.csv": "421065eb4e15d2757af8a574c6f549211efc200a3067b941d108691f6afd064d",
+    "results/strengthening/simultaneous_inference.csv": "305676bd85927388366f3cc210fa163ba79bc09c4e0c08204710f026b8aaa838",
+    "results/strengthening/single_run_oracle_instability.csv": "fd029dbfe59cb850a17df63d37eeec99760a9ac5dc38f725ffa7d674abd1ae75",
+    "results/strengthening/tolerance_nonvacuity.csv": "a4c1c4cbe14ead391bb6af4825da8f3f4fe68e1abfa5a8296dbe773341444ce8"
+  },
+  "test_result": "451 passed, 1 skipped",
+  "title": "Variance-Aware Regression Testing for Model Migration in Compound LLM Pipelines",
+  "venue": "IEEE Transactions on Software Engineering (submission)"
+}

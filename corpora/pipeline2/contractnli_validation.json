@@ -1,0 +1,24 @@
+{
+  "distinct_hypothesis_keys": 17,
+  "doc_chars": {
+    "max": 54571,
+    "median": 9936,
+    "min": 1481,
+    "over_60k_chars": 0
+  },
+  "hard_failures": [],
+  "label_distribution": {
+    "Contradiction": 841,
+    "Entailment": 3530,
+    "NotMentioned": 2820
+  },
+  "n_annotations": 7191,
+  "n_annotations_with_evidence_spans": 4371,
+  "n_documents": 423,
+  "n_unique_document_ids": 423,
+  "sha256": "dbceb356cd6203b35b27be94a5fa85e499a81c34c42c89ad53060b39f0257ba5",
+  "size_bytes": 7608211,
+  "soft_observations": [],
+  "source": "data/raw/contractnli/train.json",
+  "status": "PASS"
+}

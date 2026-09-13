@@ -1,0 +1,9 @@
+{
+  "n_ok": 560,
+  "n_results": 560,
+  "partition": "stress",
+  "pipeline": "p1_assessment",
+  "serving_mode": "batch",
+  "stage": "pr_signal",
+  "written_at": "2026-09-09T16:27:40.563028+00:00"
+}

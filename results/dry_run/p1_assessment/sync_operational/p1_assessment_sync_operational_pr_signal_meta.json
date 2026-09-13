@@ -1,0 +1,9 @@
+{
+  "n_ok": 280,
+  "n_results": 280,
+  "partition": "sync_operational",
+  "pipeline": "p1_assessment",
+  "serving_mode": "sync",
+  "stage": "pr_signal",
+  "written_at": "2026-09-09T16:27:40.627482+00:00"
+}

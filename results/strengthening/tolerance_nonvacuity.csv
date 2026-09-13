@@ -1,0 +1,15 @@
+pipeline,property,W_A,tau,delta_lower_bound,delta_upper_bound,min_acceptable_C_AB,vacuity_ratio,tolerance_vacuous
+P1,M1.collaboration,0.831441,0.1,-0.831441,0.168559,0.731441,0.120273,False
+P1,M1.delivery_consistency,0.853855,0.1,-0.853855,0.146145,0.753855,0.117116,False
+P1,M1.impact,0.690974,0.1,-0.690974,0.309026,0.590974,0.144723,False
+P1,M1.opportunity_multiset,0.0,0.1,-0.0,1.0,0.0,inf,True
+P1,M1.opportunity_sequence,0.0,0.1,-0.0,1.0,0.0,inf,True
+P1,M1.technical_execution,0.884638,0.1,-0.884638,0.115362,0.784638,0.113041,False
+P1,M2.opportunities,0.123477,0.1,-0.123477,0.876523,0.023477,0.809867,False
+P1,M2.recommendations,0.090826,0.1,-0.090826,0.909174,0.0,1.101006,True
+P1,M2.risks,0.0395,0.1,-0.0395,0.9605,0.0,2.531646,True
+P1,M2.strengths,0.104677,0.1,-0.104677,0.895323,0.004677,0.95532,False
+P1,M3.summary,0.735152,0.1,-0.735152,0.264848,0.635152,0.136026,False
+P2,cited_span_set_agreement,0.855972,0.1,-0.855972,0.144028,0.755972,0.116826,False
+P2,extracted_span_set_agreement,0.853304,0.1,-0.853304,0.146696,0.753304,0.117192,False
+P2,label_agreement,0.928571,0.1,-0.928571,0.071429,0.828571,0.107692,False

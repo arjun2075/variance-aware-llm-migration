@@ -1,0 +1,9 @@
+{
+  "n_ok": 1680,
+  "n_results": 1680,
+  "partition": "primary",
+  "pipeline": "p1_assessment",
+  "serving_mode": "batch",
+  "stage": "review_signal",
+  "written_at": "2026-09-09T16:27:40.431554+00:00"
+}

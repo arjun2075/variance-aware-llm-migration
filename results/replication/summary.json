@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "key": "incumbent_gpt4o",
+      "model_id": "gpt-4o-2024-11-20",
+      "reps": 8
+    },
+    {
+      "key": "candidate_gpt54",
+      "model_id": "gpt-5.4-2026-03-05",
+      "reps": 5
+    }
+  ],
+  "excluded_conditions": [
+    "gemini-2.5-pro (withdrawn from new users)",
+    "amazon.nova-pro-v1:0 (AWS credentials expired)",
+    "meta.llama4-maverick-17b-instruct-v1:0 (AWS credentials expired)"
+  ],
+  "finished_at": "2026-09-12T18:29:44.480556+00:00",
+  "new_calls": 24,
+  "total_calls": 1040
+}

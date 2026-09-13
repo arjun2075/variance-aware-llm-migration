@@ -1,0 +1,10 @@
+absolute_pp_difference,by_design,coverage_fraction,max_selected_per_hypothesis,pool_distinct_hypotheses,pool_mean,pool_median,pool_n,pool_proportion,pool_quantiles,selected_distinct_hypotheses,selected_mean,selected_median,selected_n,selected_proportion,selected_quantiles,smd_interpretation,standardized_mean_difference,type,variable
+21.64,True,,,,,,7191,0.117,,,,,60,0.3333,,,,categorical,gold_label=Contradiction
+15.76,True,,,,,,7191,0.4909,,,,,60,0.3333,,,,categorical,gold_label=Entailment
+5.88,True,,,,,,7191,0.3922,,,,,60,0.3333,,,,categorical,gold_label=NotMentioned
+5.88,False,,,,,,7191,0.3922,,,,,60,0.3333,,,,categorical,has_evidence=False
+5.88,False,,,,,,7191,0.6078,,,,,60,0.6667,,,,categorical,has_evidence=True
+,False,,,,11049.2861,9936.0,7191,,"{""p10"": 4192.0, ""p25"": 6366.0, ""p50"": 9936.0, ""p75"": 13724.0, ""p90"": 20439.0}",,10271.6667,8890.0,60,,"{""p10"": 5084.0, ""p25"": 6217.0, ""p50"": 8891.0, ""p75"": 13416.0, ""p90"": 17266.0}",small,-0.1172,continuous,n_doc_chars
+,False,,,,1.1599,1.0,7191,,"{""p10"": 0.0, ""p25"": 0.0, ""p50"": 1.0, ""p75"": 2.0, ""p90"": 3.0}",,1.2167,1.0,60,,"{""p10"": 0.0, ""p25"": 0.0, ""p50"": 1.0, ""p75"": 2.0, ""p90"": 3.0}",negligible,0.0388,continuous,n_evidence_spans
+,False,,,,296.3086,226.0,7191,,"{""p10"": 0.0, ""p25"": 0.0, ""p50"": 226.0, ""p75"": 447.0, ""p90"": 749.0}",,314.45,288.5,60,,"{""p10"": 0.0, ""p25"": 0.0, ""p50"": 291.0, ""p75"": 537.0, ""p90"": 630.0}",negligible,0.0512,continuous,evidence_chars
+,False,1.0,10,17,,,7191,,,17,,,60,,,,,coverage,hypothesis_coverage

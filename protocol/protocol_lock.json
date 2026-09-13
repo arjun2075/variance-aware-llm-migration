@@ -1,0 +1,232 @@
+{
+  "_public_artifact_note": [
+    "PUBLIC ARTIFACT. Derived from the private science freeze 3652060.",
+    "",
+    "task_corpus_files: ALL hashes verify unchanged. No experimental input was",
+    "altered by the public-release scrub.",
+    "",
+    "analysis_code_files: hashes for five infrastructure/source files no longer",
+    "match, because their docstrings and comments were rewritten to remove",
+    "corporate execution-environment identifiers. The rewrites are textual only.",
+    "Analysis semantics, estimands, seeds and the recorded ledger are unchanged,",
+    "and the reported statistics reproduce bit-for-bit (see REPRODUCE.md).",
+    "Files affected: src/vaml/adapters/shim.py, src/vaml/models.py,",
+    "src/vaml/orchestration/rate_limits.py, scripts/run_experiment.py,",
+    "scripts/qc_ceiling_check.py, scripts/smoke_test.py.",
+    "",
+    "Compiled __pycache__ entries present in the private lock were removed here:",
+    "byte-caches are regenerated on import and are not shipped.",
+    "",
+    "The authoritative hash record proving derivation from 3652060 is retained",
+    "privately and is not published (it enumerates internal identifiers)."
+  ],
+  "analysis_code_files": [
+    {
+      "path": "src/vaml/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/vaml/adapters/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/vaml/adapters/base.py",
+      "sha256": "fe65ad335a62570dd6abb2e7d94b75314371f338bdc6fa2adcc5ef44bdfff2f3"
+    },
+    {
+      "path": "src/vaml/adapters/shim.py",
+      "sha256": "ff4192a08210c57df33369200c77578bd60c5a275d7a5f035dd363794c3cbb34"
+    },
+    {
+      "path": "src/vaml/analysis/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/vaml/analysis/correctness.py",
+      "sha256": "d4bc296adb6f7aa6501583c81f801199bf11fbb0e0bb9e70ed28fe8f6d3ecb96"
+    },
+    {
+      "path": "src/vaml/analysis/migration.py",
+      "sha256": "ad43860bcedd352178da1dde4466a665f64c25b3a246d0ae9b53a7713eba8167"
+    },
+    {
+      "path": "src/vaml/models.py",
+      "sha256": "842aaa8143cc54dbd2403ebcee60e292ced084d21f1dbefe460c300e1f096fe2"
+    },
+    {
+      "path": "src/vaml/orchestration/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/vaml/orchestration/rate_limits.py",
+      "sha256": "496e60006f1922ed6ac5c9880d730f115166c2028a46c0e67eb445f5cb18d970"
+    },
+    {
+      "path": "src/vaml/orchestration/waves.py",
+      "sha256": "3c7b103b4f7810fa4621e0cb0a73b0a462b3ee7a47f2fc1cc0e640e532535950"
+    },
+    {
+      "path": "src/vaml/pipelines/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/vaml/types.py",
+      "sha256": "b28ce87bcbad63e7703a033738807ee503585b299adfdab690b0cac2e2a136f6"
+    },
+    {
+      "path": "scripts/_load_env.py",
+      "sha256": "9a17a7f66eb57cae49e738559637e479d90868d611b20850ba0e9f184d99e5b6"
+    },
+    {
+      "path": "scripts/build_p1_corpus.py",
+      "sha256": "ab804fb14967f4edc2344c1d850df4fb3cfd966efcb5780f98e7375711c68049"
+    },
+    {
+      "path": "scripts/build_p2_corpus.py",
+      "sha256": "144f0b2d517e564ad9544bdeeba5d566f92bf22ecc50e1d1b3a83377f3951750"
+    },
+    {
+      "path": "scripts/check_availability.py",
+      "sha256": "4df9f3914924f0380feb3302f9653212657398abdd397b9a05a1679ad900efa6"
+    },
+    {
+      "path": "scripts/check_launch_readiness.py",
+      "sha256": "7522c837c926f772fe4024878af2443b1ef35348cd59ec68b183ff5e4178bb8d"
+    },
+    {
+      "path": "scripts/dry_run.py",
+      "sha256": "a31f1ec0c80d36ad653b0fcc20e8b13cf7454dd265cc0370771b60b9419d68fa"
+    },
+    {
+      "path": "scripts/estimate_cost.py",
+      "sha256": "a45c2d4482cfae16606c9ea9a11cdbc91b094dd194fae690de7a9f3b9b3b8152"
+    },
+    {
+      "path": "scripts/qc_ceiling_check.py",
+      "sha256": "0fc197b19be93623362df24188547ce43c7cd7a06d3a822ea3691b183e59d780"
+    },
+    {
+      "path": "scripts/qc_status.py",
+      "sha256": "669ac4185d41a50283d10063b7ea4a3cc266e59f98ece097479fee495e2dda09"
+    },
+    {
+      "path": "scripts/run_experiment.py",
+      "sha256": "2f465de9b92463b01d89aedbbfdb6bb507670e189f7dba727545b4c71eb4e862"
+    },
+    {
+      "path": "scripts/smoke_test.py",
+      "sha256": "0966e069fc9bc923ad054569c51e882689622ad2b23ce625d0878879f2c18a24"
+    },
+    {
+      "path": "scripts/validate_contractnli.py",
+      "sha256": "f0fb99f378c39af2ea90f498ac113b3f033307a25891fd8528f20b04195e3c4f"
+    }
+  ],
+  "analysis_code_set_hash": "955fdaa434c4d840bf9b7f5df06527060ab7df01bed900d117eceaac9529b02b",
+  "frozen_at": "2026-09-09T16:28:00.987680+00:00",
+  "protocol_document": {
+    "path": "protocol/PROTOCOL.md",
+    "sha256": "33b35948fcd763fe2d28a22a9fe30dd15d542cda35e6e6fd439c1a1cd1e513ca"
+  },
+  "protocol_hash": "1f3e67a4429b9196d08f37e6a31e5fbf36106622f3b506cee56a12280625db2f",
+  "protocol_spec": {
+    "path": "protocol/protocol_spec.json",
+    "section_hashes": {
+      "amendments": "12263635c48f7c8f7be2a7b442b81d42b14986b195d0e3aad9acaf4204f4813b",
+      "analysis_code_version": "955fc0a86ecdd53c0a52cb5d3f43edbd30ef6ebd2ee05bfd2a2050c45ecbf196",
+      "confirmatory_vs_exploratory": "bc1d5e8eb7e7a41ff4f861a3144a5a40ce8d8f865a2d9943fa271b6bd692f4f4",
+      "execution_environment": "9deea5ff9ed846f8e50cd099d142bcd15ba1d483d84afb0ceba8653350aaa5d1",
+      "framing": "d2bf56cc538d4dd778fdb0c212202fef56d3d40f035fd81577576ebca359d4a6",
+      "git_commit": "4f57aa72e2c9571e3681160e7292dec4a9dcac20434c55e4b47fb0f8e5cf3b11",
+      "historical_pilot_study": "fb6c62dca314001b8ff05af559b8f7de5239074b6414379d4be23f3eb61937e8",
+      "legacy_m6_artifact": "0b500d2850f0b42dee1b2cb23c32cd5c6cce2e827e1d156517b01a98fb81d12d",
+      "model_conditions": "472b00dc2431450143223fdee75cd1559e59061c2a2039e82099d560ad01a759",
+      "pairwise_estimands": "ed5c7fb1dce85e56110c0ffdfb1a24f75b440076f6cfeb035f634b8828ba1770",
+      "pipelines": "762d39a7eed36aa535a9f0195e3e3f3ea9ee36979080c4a97dc836fb95a55a65",
+      "pricing": "75a98f65cbec5dece58dfb160eec243ee8dcf6687114eb69d28c7b48203ada1d",
+      "primary_metrics": "49eabaef6dc7ae77ec2350504d09ef8870983a595fd3bde7f53d1131fa759852",
+      "property_tolerances": "9696c006adf7a778be89260e3461982042f3f2e435286d0fa2ee7ed2d991fed6",
+      "protocol_id": "1dfb4896be74f44bff8c48944c6103b24ec6e07f2ecc719e77919c075047b6a0",
+      "public_api_replication": "ae4be8b0a38f8b9914c44d8bde196e9407421ecaa8afab3e608d68bfb9dd0911",
+      "public_research_prompts": "9af499b2b57567cb8c0fd20a1695264e6cbdbc1924581dcff14bd8fc8ca7ea06",
+      "randomization_procedure": "20f628229b8e3274223a5d57a22ce0830407c01be675ec86286b47fa410e0fb7",
+      "repetition_counts": "132d0921dbad9119217756e8997f01001fcf919721e682b3b2e26ca23f1060d8",
+      "retry_and_exclusion_rules": "c2207e663e5e4348f3bc03d1c2b2acf74a125eb7ec053a964ea614fdbcd7d0a8",
+      "semantic_matching": "0c2794b66fd75ef433a934879965c5cc0ff332ba831396a683540bcbc8552911",
+      "status": "9a422b12f6b2ef8b8e3aab2750947e6a7bb357f5c7bf59ca94426986d14874c1",
+      "task_corpora": "6f5683834d32e1e36be58436d020a5bb58182ace289803063faec754d45cda33",
+      "task_counts": "d8b38a21ce636503c998608f640a0e59ead7a20cb7485844eec9a36305895595",
+      "tolerance_sensitivity_ranges": "205f9537936b1d7673e6a1e097b8dbe2a737cc07d30d6b33fe0489fc4242d98f"
+    },
+    "sha256": "d6c4af9510b90d3b56a5eaab7bb582d7936a9d7b0763a4c4cf0e3203fe76c9cd"
+  },
+  "schema_version": 1,
+  "status": "FROZEN_PENDING_EXECUTION",
+  "task_corpus_files": [
+    {
+      "path": "corpora/pipeline1/p1_corpus_report.json",
+      "sha256": "7c2c8586ca2e7935febc846664e559ee3f673043f8d857c4caeebbc0b7c63897"
+    },
+    {
+      "path": "corpora/pipeline1/p1_primary.jsonl",
+      "sha256": "6215f2a99e5455bf06c1de3dd2f6482a77e66f7ffec2956942fa1f9c89d578a7"
+    },
+    {
+      "path": "corpora/pipeline1/p1_stress.jsonl",
+      "sha256": "bc6e5539d40acb25c57897a1fe48cbc3adaad8a8d9f4bfc043ac35c176e2a706"
+    },
+    {
+      "path": "corpora/pipeline2/contractnli_validation.json",
+      "sha256": "686f43e2b3c5d93c068c8df646b81bb6b868c75627e9d4ae958b1fbd9fcc616f"
+    },
+    {
+      "path": "corpora/pipeline2/p2_corpus_report.json",
+      "sha256": "0d0ed430bc8ade2aa9c4a97e271c2aa2f688db4fdf95c9393cd351770f656411"
+    },
+    {
+      "path": "corpora/pipeline2/p2_primary.jsonl",
+      "sha256": "53082a01241d248809021876dea1655d0834fec18ab4d035a9376470adc717f6"
+    },
+    {
+      "path": "corpora/pipeline2/p2_stress.jsonl",
+      "sha256": "f96006eebec93ca1ef64a46a4e0811eeeb381fcfab937e63be63a179546abb74"
+    },
+    {
+      "path": "prompts/pipeline1/VERBATIM_REUSE_CHECK.md",
+      "sha256": "8e354e0a62824392e439aa8c7d69ca5d18c989909fdcc6a9dfe3321d3d721fe1"
+    },
+    {
+      "path": "prompts/pipeline1/stage1_pr_signal.md",
+      "sha256": "c890526ddb02c0d5ebdfb1f75548662f96f771f1906b87f39cbad07609448c05"
+    },
+    {
+      "path": "prompts/pipeline1/stage2_review_signal.md",
+      "sha256": "ab627f4fb57d14f9bdfba95be1bffd29aa21f1d6de20f040f475916d94a59838"
+    },
+    {
+      "path": "prompts/pipeline1/stage3_synthesis.md",
+      "sha256": "f9fecf027aec29cdb208eb360c95c85fc213001f4aec2ebfb3abe9a3c61970a1"
+    },
+    {
+      "path": "prompts/pipeline1/stage4_deepen.md",
+      "sha256": "8adf88a4e3d821f3ac0a73b0f66e373683a9825e264ca31ab2fe922f89687f14"
+    },
+    {
+      "path": "prompts/pipeline2/stage1_extract_evidence.md",
+      "sha256": "e507adf84dc969cd5bc1630a2e626e2a68713672af905cc0b26f68a707521e5c"
+    },
+    {
+      "path": "prompts/pipeline2/stage2_assess_evidence.md",
+      "sha256": "6bb0bc9c4acd5c4ce240cc002b14ff8b4236e346caacce1af0feff386c6b692c"
+    },
+    {
+      "path": "prompts/pipeline2/stage3_classify.md",
+      "sha256": "54b3d4875010e64e6761d71791d94be16c22d94cdb086cb5592dee043d7a3f7a"
+    },
+    {
+      "path": "prompts/pipeline2/stage4_verify.md",
+      "sha256": "fbad3d8bf79d739abd1bd7f1f111ae12ddb666a917f9f8d92e1d0971b8b39d62"
+    }
+  ],
+  "task_corpus_set_hash": "605a608f450ca5861671f9d02cd2147860be65573131525a0a874c58475df920"
+}

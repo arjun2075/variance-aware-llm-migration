@@ -1,0 +1,9 @@
+{
+  "n_ok": 280,
+  "n_results": 280,
+  "partition": "sync_operational",
+  "pipeline": "p2_contractnli",
+  "serving_mode": "sync",
+  "stage": "assess_evidence",
+  "written_at": "2026-09-09T16:27:41.002607+00:00"
+}

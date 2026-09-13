@@ -1,0 +1,45 @@
+{
+  "acceptance": {
+    "accepted": 5040,
+    "by_partition": {
+      "p1_assessment/primary": 1680,
+      "p1_assessment/stress": 560,
+      "p1_assessment/sync_operational": 280,
+      "p2_contractnli/primary": 1680,
+      "p2_contractnli/stress": 560,
+      "p2_contractnli/sync_operational": 280
+    },
+    "excluded": 0,
+    "exclusion_reasons": {},
+    "parse_failure_rate_by_model": {
+      "candidate_gemini25pro": "3/900 (0.3%)",
+      "candidate_gpt54": "0/900 (0.0%)",
+      "candidate_llama4_maverick": "28/900 (3.1%)",
+      "candidate_nova_pro": "23/900 (2.6%)",
+      "incumbent_gpt4o": "5/1440 (0.3%)"
+    },
+    "schema_valid": 5011,
+    "schema_violation_rate_by_model": {
+      "candidate_gemini25pro": "3/900 (0.3%)",
+      "candidate_gpt54": "0/900 (0.0%)",
+      "candidate_llama4_maverick": "3/900 (0.3%)",
+      "candidate_nova_pro": "19/900 (2.1%)",
+      "incumbent_gpt4o": "4/1440 (0.3%)"
+    },
+    "total_runs": 5040
+  },
+  "calls": 20160,
+  "complete": true,
+  "hashes_verified": false,
+  "planned": 20160,
+  "provenance": {
+    "mismatches": 0,
+    "returned_ids": {
+      "gemini-2.5-pro": 900,
+      "gpt-4o-2024-11-20": 1440,
+      "gpt-5.4-2026-03-05": 900,
+      "us.amazon.nova-pro-v1:0": 900,
+      "us.meta.llama4-maverick-17b-instruct-v1:0": 900
+    }
+  }
+}

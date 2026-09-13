@@ -1,0 +1,21 @@
+{
+  "by_model": {
+    "gemini-2.5-pro": 28,
+    "gpt-4o-2024-11-20": 12,
+    "gpt-5.4-2026-03-05": 20,
+    "us.amazon.nova-pro-v1:0": 12,
+    "us.meta.llama4-maverick-17b-instruct-v1:0": 10
+  },
+  "calls": 82,
+  "completion_tokens": 74316,
+  "errors": 0,
+  "gemini_truncated": "15/28",
+  "ledger_sha256": "01c641f8db8735df5c0da9cb697b49e43cfea0028cd4b91ff159a97a135cccf4",
+  "max_tokens_used": 2048,
+  "ok": 82,
+  "other_models_truncated": 0,
+  "prompt_tokens": 53076,
+  "reason": "max_tokens implementation constant of 2048 caused gemini-2.5-pro to terminate with finish_reason=length on 15/28 calls (54%), producing truncated JSON. Discovered at 82/20160 calls.",
+  "status": "ABORTED_QC_RUN - EXCLUDED FROM ALL CONFIRMATORY ANALYSIS",
+  "use_policy": "Retained for auditability only. MUST NOT be merged with the confirmatory dataset or used in any scientific analysis."
+}

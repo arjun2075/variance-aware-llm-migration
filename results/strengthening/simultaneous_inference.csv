@@ -1,0 +1,13 @@
+property,candidate,delta,frozen_delta,frozen_ci_lower,frozen_ci_upper,frozen_ci_width,frozen_verdict,simultaneous_lower,simultaneous_upper,simultaneous_width,width_inflation_factor,simultaneous_verdict,verdict_changed,critical_value,bootstrap_se
+label_agreement,gpt-5.4-2026-03-05,-0.064821,-0.064821,-0.135836,-0.003376,0.13246,inconclusive,-0.153037,0.023394,0.17643,1.332,inconclusive,False,2.7839,0.031687
+cited_span_set_agreement,gpt-5.4-2026-03-05,-0.206916,-0.206916,-0.294979,-0.125336,0.169643,rejected,-0.320448,-0.093383,0.227064,1.3385,rejected,False,2.7839,0.040781
+extracted_span_set_agreement,gpt-5.4-2026-03-05,-0.224764,-0.224764,-0.313697,-0.141568,0.172129,rejected,-0.341391,-0.108137,0.233254,1.3551,rejected,False,2.7839,0.041893
+label_agreement,gemini-2.5-pro,-0.123571,-0.123571,-0.202197,-0.051786,0.150411,rejected,-0.225621,-0.021522,0.204099,1.3569,inconclusive,True,2.7839,0.036657
+cited_span_set_agreement,gemini-2.5-pro,-0.205532,-0.205532,-0.290089,-0.12522,0.164869,rejected,-0.314883,-0.09618,0.218703,1.3265,rejected,False,2.7839,0.03928
+extracted_span_set_agreement,gemini-2.5-pro,-0.220266,-0.220266,-0.309338,-0.134832,0.174506,rejected,-0.335661,-0.104871,0.23079,1.3225,rejected,False,2.7839,0.04145
+label_agreement,amazon.nova-pro-v1-0,-0.096488,-0.096488,-0.168764,-0.033228,0.135536,inconclusive,-0.184079,-0.008897,0.175183,1.2925,inconclusive,False,2.7839,0.031463
+cited_span_set_agreement,amazon.nova-pro-v1-0,-0.282215,-0.282215,-0.376139,-0.189714,0.186425,rejected,-0.405483,-0.158948,0.246534,1.3224,rejected,False,2.7839,0.044278
+extracted_span_set_agreement,amazon.nova-pro-v1-0,-0.15229,-0.15229,-0.232719,-0.07593,0.156789,rejected,-0.2532,-0.051379,0.201822,1.2872,rejected,False,2.7839,0.036248
+label_agreement,meta.llama4-maverick-17b-instruct-v1-0,-0.128988,-0.128988,-0.214917,-0.05281,0.162107,rejected,-0.237361,-0.020615,0.216746,1.3371,inconclusive,True,2.7839,0.038928
+cited_span_set_agreement,meta.llama4-maverick-17b-instruct-v1-0,-0.403069,-0.403069,-0.508555,-0.297762,0.210793,rejected,-0.546925,-0.259214,0.287711,1.3649,rejected,False,2.7839,0.051674
+extracted_span_set_agreement,meta.llama4-maverick-17b-instruct-v1-0,-0.321651,-0.321651,-0.419892,-0.224754,0.195138,rejected,-0.457174,-0.186127,0.271047,1.389,rejected,False,2.7839,0.048681

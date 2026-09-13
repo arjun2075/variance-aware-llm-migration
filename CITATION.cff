@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the paper below."
+title: "Variance-Aware Regression Testing for Model Migration in Compound LLM Pipelines"
+abstract: >-
+  Reproducibility artifact. Treats model migration as a stochastic
+  regression-testing problem: candidate behaviour is evaluated relative to the
+  incumbent's own run-to-run variation, separately for each pipeline property
+  and application tolerance. Contains the frozen task corpora, research
+  prompts, persisted model-call ledger, analysis code and all reported results.
+authors:
+  - family-names: Garg
+    given-names: Arjun
+license: MIT
+repository-code: "https://github.com/arjun2075/variance-aware-llm-migration"
+keywords:
+  - large language models
+  - regression testing
+  - model migration
+  - compound AI systems
+  - equivalence testing
+  - reproducibility
+version: "tse-submission-v1"
+date-released: "2026-09-13"
+references:
+  - type: dataset
+    title: "ContractNLI: A Dataset for Document-level Natural Language Inference for Contracts"
+    authors:
+      - family-names: Koreeda
+        given-names: Yuta
+      - family-names: Manning
+        given-names: "Christopher D."
+    year: 2021
+    license: CC-BY-4.0
+    url: "https://stanfordnlp.github.io/contract-nli/"
+    notes: >-
+      Source of the Pipeline 2 task corpus. Not redistributed in this artifact;
+      obtain it under its own Terms of Use.

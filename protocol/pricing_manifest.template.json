@@ -1,0 +1,74 @@
+{
+  "_README": [
+    "PUBLIC API PRICING MANIFEST — fill immediately before the freeze.",
+    "Pricing is DOCUMENTATION, not an approval gate. It is frozen so that",
+    "post-hoc cost reconstruction uses the prices in force at execution time.",
+    "",
+    "All prices are USD per 1,000,000 tokens.",
+    "Record the source URL and retrieval date for every entry.",
+    "Leave batch_* null where the provider offers no batch discount for that",
+    "exact model; do NOT copy a sibling model's price."
+  ],
+  "retrieved_at": null,
+  "retrieved_by": null,
+  "currency": "USD",
+  "unit": "per_1M_tokens",
+  "entries": [
+    {
+      "provider": "openai",
+      "model_id": "gpt-4o-2024-11-20",
+      "standard_input": null,
+      "standard_output": null,
+      "batch_input": null,
+      "batch_output": null,
+      "batch_discount_note": null,
+      "source_url": "https://openai.com/api/pricing/",
+      "retrieval_date": null
+    },
+    {
+      "provider": "openai",
+      "model_id": "<successor snapshot resolved at freeze>",
+      "standard_input": null,
+      "standard_output": null,
+      "batch_input": null,
+      "batch_output": null,
+      "source_url": "https://openai.com/api/pricing/",
+      "retrieval_date": null
+    },
+    {
+      "provider": "anthropic",
+      "model_id": "<snapshot resolved at freeze>",
+      "standard_input": null,
+      "standard_output": null,
+      "batch_input": null,
+      "batch_output": null,
+      "source_url": "https://www.anthropic.com/pricing",
+      "retrieval_date": null
+    },
+    {
+      "provider": "bedrock",
+      "model_id": "amazon.nova-pro-v1:0",
+      "standard_input": null,
+      "standard_output": null,
+      "batch_input": null,
+      "batch_output": null,
+      "source_url": "https://aws.amazon.com/bedrock/pricing/",
+      "retrieval_date": null
+    },
+    {
+      "provider": "bedrock",
+      "model_id": "meta.llama4-maverick-17b-instruct-v1:0",
+      "standard_input": null,
+      "standard_output": null,
+      "batch_input": null,
+      "batch_output": null,
+      "source_url": "https://aws.amazon.com/bedrock/pricing/",
+      "retrieval_date": null
+    }
+  ],
+  "post_execution": {
+    "estimated_cost_from_frozen_prices": null,
+    "actual_provider_account_spend": null,
+    "variance_note": null
+  }
+}

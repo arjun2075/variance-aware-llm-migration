@@ -1,0 +1,13 @@
+property,candidate,delta,ci_lower,ci_upper,rejected_until_tau,demonstrated_from_tau,inconclusive_window,verdict_at_tau_0.05,verdict_at_tau_0.10,verdict_at_tau_0.20,frozen_verdict_at_declared_tol
+label_agreement,gpt-5.4-2026-03-05,-0.064821,-0.135836,-0.003376,0.003376,0.135836,0.13246,inconclusive,inconclusive,demonstrated,inconclusive
+cited_span_set_agreement,gpt-5.4-2026-03-05,-0.206916,-0.294979,-0.125336,0.125336,0.294979,0.169643,rejected,rejected,inconclusive,rejected
+extracted_span_set_agreement,gpt-5.4-2026-03-05,-0.224764,-0.313697,-0.141568,0.141568,0.313697,0.172129,rejected,rejected,inconclusive,rejected
+label_agreement,gemini-2.5-pro,-0.123571,-0.202197,-0.051786,0.051786,0.202197,0.150411,rejected,inconclusive,inconclusive,rejected
+cited_span_set_agreement,gemini-2.5-pro,-0.205532,-0.290089,-0.12522,0.12522,0.290089,0.164869,rejected,rejected,inconclusive,rejected
+extracted_span_set_agreement,gemini-2.5-pro,-0.220266,-0.309338,-0.134832,0.134832,0.309338,0.174506,rejected,rejected,inconclusive,rejected
+label_agreement,amazon.nova-pro-v1-0,-0.096488,-0.168764,-0.033228,0.033228,0.168764,0.135536,inconclusive,inconclusive,demonstrated,inconclusive
+cited_span_set_agreement,amazon.nova-pro-v1-0,-0.282215,-0.376139,-0.189714,0.189714,0.376139,0.186425,rejected,rejected,inconclusive,rejected
+extracted_span_set_agreement,amazon.nova-pro-v1-0,-0.15229,-0.232719,-0.07593,0.07593,0.232719,0.156789,rejected,inconclusive,inconclusive,rejected
+label_agreement,meta.llama4-maverick-17b-instruct-v1-0,-0.128988,-0.214917,-0.05281,0.05281,0.214917,0.162107,rejected,inconclusive,inconclusive,rejected
+cited_span_set_agreement,meta.llama4-maverick-17b-instruct-v1-0,-0.403069,-0.508555,-0.297762,0.297762,0.508555,0.210793,rejected,rejected,rejected,rejected
+extracted_span_set_agreement,meta.llama4-maverick-17b-instruct-v1-0,-0.321651,-0.419892,-0.224754,0.224754,0.419892,0.195138,rejected,rejected,rejected,rejected

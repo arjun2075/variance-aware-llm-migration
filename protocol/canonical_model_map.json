@@ -1,0 +1,37 @@
+{
+  "_README": [
+    "Frozen requested -> canonical model id mapping, established by a live probe",
+    "of every condition on 2026-09-09 BEFORE the confirmatory grid.",
+    "",
+    "PUBLIC ARTIFACT NOTE: the confirmatory runs were executed through a managed",
+    "execution path whose catalog used routing-specific request ids. Those ids",
+    "have been replaced throughout this public artifact by the corresponding",
+    "public model ids, so the OpenAI condition's requested id now equals its",
+    "canonical id. The substitution is 1:1 and changes no measurement: every",
+    "analysis keys off the canonical id, which is unchanged. The Bedrock",
+    "conditions gain a 'us.' region prefix and ':0' version separator upstream,",
+    "which is public provider behaviour and is preserved as observed.",
+    "",
+    "Without this mapping the protocol's 'flag any canonical mismatch' rule would",
+    "flag every one of the 20,160 calls, which would make the check useless.",
+    "",
+    "A call is FLAGGED when its returned model id is not the expected canonical",
+    "for the requested condition. Flagged runs are recorded and reported, never",
+    "silently merged."
+  ],
+  "probed_at": "2026-09-09T15:45:00Z",
+  "probe_method": "one live call per condition through the transport helper; canonical id read from the response 'model' field",
+  "mapping": {
+    "gpt-4o-2024-11-20": "gpt-4o-2024-11-20",
+    "gpt-5.4-2026-03-05": "gpt-5.4-2026-03-05",
+    "gemini-2.5-pro": "gemini-2.5-pro",
+    "amazon.nova-pro-v1-0": "us.amazon.nova-pro-v1:0",
+    "meta.llama4-maverick-17b-instruct-v1-0": "us.meta.llama4-maverick-17b-instruct-v1:0"
+  },
+  "notes": {
+    "gpt-4o-2024-11-20": "Requested and canonical ids are identical in this public artifact; the served snapshot is the public dated one.",
+    "gemini-2.5-pro": "Returns the alias unchanged - the managed execution path did NOT resolve it to a dated snapshot. Confirms the pinning limitation already disclosed: served weights may change during or between runs and this study cannot detect that from the id alone.",
+    "amazon.nova-pro-v1-0": "Regional Bedrock inference profile ('us.' prefix).",
+    "meta.llama4-maverick-17b-instruct-v1-0": "Regional Bedrock inference profile ('us.' prefix)."
+  }
+}

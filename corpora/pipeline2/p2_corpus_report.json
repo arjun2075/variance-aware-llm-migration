@@ -1,0 +1,35 @@
+{
+  "gold_leakage_policy": "gold_label and gold_spans are stored for SCORING ONLY; inference_view() strips them before any model sees a record",
+  "is_synthetic_fixture": false,
+  "license": "CC BY 4.0 (ContractNLI); ToU accepted out of band",
+  "primary": {
+    "distinct_documents": 60,
+    "gold_label_distribution": {
+      "Contradiction": 20,
+      "Entailment": 20,
+      "NotMentioned": 20
+    },
+    "max_doc_chars": 23380,
+    "median_doc_chars": 8891,
+    "n": 60,
+    "path": "corpora/pipeline2/p2_primary.jsonl",
+    "sha256": "53082a01241d248809021876dea1655d0834fec18ab4d035a9376470adc717f6"
+  },
+  "primary_stress_document_overlap": 0,
+  "sampling_unit": "document",
+  "seed": 20260803,
+  "source": "data/raw/contractnli/train.json",
+  "stress": {
+    "distinct_documents": 20,
+    "gold_label_distribution": {
+      "Contradiction": 7,
+      "Entailment": 7,
+      "NotMentioned": 6
+    },
+    "max_doc_chars": 24758,
+    "median_doc_chars": 9552,
+    "n": 20,
+    "path": "corpora/pipeline2/p2_stress.jsonl",
+    "sha256": "f96006eebec93ca1ef64a46a4e0811eeeb381fcfab937e63be63a179546abb74"
+  }
+}

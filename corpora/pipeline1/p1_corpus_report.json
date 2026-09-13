@@ -1,0 +1,102 @@
+{
+  "primary": {
+    "axis_coverage": {
+      "ambiguity": {
+        "high": 11,
+        "low": 23,
+        "medium": 26
+      },
+      "archetype": {
+        "cross_team_integrator": 4,
+        "high_volume_low_review": 10,
+        "incident_heavy": 7,
+        "low_volume_high_impact": 10,
+        "mentor_heavy": 9,
+        "migration_specialist": 5,
+        "prototype_explorer": 9,
+        "reliability_steward": 6
+      },
+      "conflict_mode": {
+        "breadth_vs_depth": 10,
+        "none": 14,
+        "output_vs_enablement": 10,
+        "peer_vs_metrics": 4,
+        "recent_vs_historical": 8,
+        "self_vs_observed": 8,
+        "velocity_vs_quality": 6
+      },
+      "difficulty": {
+        "clear_cut": 23,
+        "hard": 16,
+        "moderate": 14,
+        "very_hard": 7
+      },
+      "evidence_volume": {
+        "medium": 26,
+        "overwhelming": 2,
+        "rich": 19,
+        "sparse": 13
+      },
+      "seniority": {
+        "early_career": 11,
+        "mid_level": 13,
+        "principal": 13,
+        "senior": 11,
+        "staff": 12
+      }
+    },
+    "distinct_axis_signatures": 60,
+    "n": 60,
+    "path": "corpora/pipeline1/p1_primary.jsonl",
+    "sha256": "6215f2a99e5455bf06c1de3dd2f6482a77e66f7ffec2956942fa1f9c89d578a7"
+  },
+  "primary_stress_signature_overlap": 0,
+  "seed": 20260803,
+  "stress": {
+    "axis_coverage": {
+      "ambiguity": {
+        "high": 14,
+        "medium": 6
+      },
+      "archetype": {
+        "cross_team_integrator": 2,
+        "high_volume_low_review": 3,
+        "incident_heavy": 2,
+        "low_volume_high_impact": 3,
+        "mentor_heavy": 2,
+        "migration_specialist": 3,
+        "prototype_explorer": 3,
+        "reliability_steward": 2
+      },
+      "conflict_mode": {
+        "output_vs_enablement": 3,
+        "peer_vs_metrics": 3,
+        "recent_vs_historical": 4,
+        "self_vs_observed": 6,
+        "velocity_vs_quality": 4
+      },
+      "difficulty": {
+        "hard": 9,
+        "moderate": 1,
+        "very_hard": 10
+      },
+      "evidence_volume": {
+        "medium": 3,
+        "overwhelming": 6,
+        "rich": 4,
+        "sparse": 7
+      },
+      "seniority": {
+        "early_career": 4,
+        "mid_level": 5,
+        "principal": 4,
+        "senior": 3,
+        "staff": 4
+      }
+    },
+    "distinct_axis_signatures": 20,
+    "n": 20,
+    "path": "corpora/pipeline1/p1_stress.jsonl",
+    "sha256": "bc6e5539d40acb25c57897a1fe48cbc3adaad8a8d9f4bfc043ac35c176e2a706"
+  }
+}

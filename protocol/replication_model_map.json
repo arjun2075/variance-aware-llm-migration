@@ -1,0 +1,78 @@
+{
+  "_README": [
+    "Mapping from managed-execution-path confirmatory conditions to public-API equivalents for",
+    "the replication subset. Recorded BEFORE any results were inspected.",
+    "",
+    "The replication CANNOT be a like-for-like rerun. Where a condition has no",
+    "faithful public equivalent that is documented here as a gap rather than",
+    "papered over with a near-neighbour, because substituting a different model",
+    "and calling it the same condition would make a 'reproduces' verdict",
+    "meaningless."
+  ],
+  "frozen_at": "2026-09-11",
+  "frozen_before_any_results_inspected": true,
+  "purpose": "Test whether the qualitative findings reproduce outside the managed execution path. This is a robustness check, NOT a second confirmatory study.",
+  "conditions": [
+    {
+      "requested_condition": "gpt-4o-2024-11-20",
+      "canonical_model_id": "gpt-4o-2024-11-20",
+      "role": "incumbent",
+      "public_provider": "openai",
+      "public_model_id": "gpt-4o-2024-11-20",
+      "faithfulness": "EXACT",
+      "note": "The managed execution path canonical id is already the public dated snapshot. Direct comparison is valid."
+    },
+    {
+      "requested_condition": "gpt-5.4-2026-03-05",
+      "role": "candidate",
+      "public_provider": "openai",
+      "public_model_id": "gpt-5.4-2026-03-05",
+      "faithfulness": "PENDING_VERIFICATION",
+      "note": "Expected to exist on the public OpenAI API under the same dated id, but NOT yet verified against a public account. If the snapshot is unavailable publicly, record the gap; do not silently substitute a different GPT-5 snapshot."
+    },
+    {
+      "requested_condition": "gemini-2.5-pro",
+      "role": "candidate",
+      "public_provider": "google",
+      "public_model_id": "gemini-2.5-pro",
+      "faithfulness": "PROVIDER_MISMATCH",
+      "note": "Gemini is reachable via Google AI Studio or Vertex AI, NOT via OpenAI/Anthropic/Bedrock. The frozen protocol named OpenAI, Anthropic and Bedrock as the replication providers, so this condition falls outside that set. Two honest options: (a) add Google AI Studio as a fourth replication provider, or (b) exclude this condition from the replication and say so. Either way the alias is still unpinned, so exact weight equivalence is not verifiable."
+    },
+    {
+      "requested_condition": "amazon.nova-pro-v1-0",
+      "canonical_model_id": "us.amazon.nova-pro-v1:0",
+      "role": "candidate",
+      "public_provider": "bedrock",
+      "public_model_id": "us.amazon.nova-pro-v1:0",
+      "faithfulness": "EXACT",
+      "note": "Same Bedrock regional inference profile, reachable from a personal AWS account."
+    },
+    {
+      "requested_condition": "meta.llama4-maverick-17b-instruct-v1-0",
+      "canonical_model_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+      "role": "candidate",
+      "public_provider": "bedrock",
+      "public_model_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+      "faithfulness": "EXACT",
+      "note": "Same Bedrock regional inference profile."
+    }
+  ],
+  "anthropic_note": "The frozen protocol lists Anthropic among the replication providers, but the confirmatory matrix contains no Anthropic condition (the candidate slot went to gemini-2.5-pro). There is therefore nothing to replicate on Anthropic. Do NOT add an Anthropic model to the replication: it would not correspond to any confirmatory condition.",
+  "expected_coverage": {
+    "exact": 3,
+    "pending_verification": 1,
+    "provider_mismatch": 1,
+    "comment": "At best 4 of 5 conditions are replicable within the frozen provider set. This limitation must be stated in the paper."
+  },
+  "serving_configuration_caveat": "Even for EXACT id matches, the public API and the managed execution path are different serving paths. Differences in behaviour may reflect serving infrastructure rather than model identity. The replication tests whether QUALITATIVE conclusions hold, not whether numbers match.",
+  "scale": {
+    "tasks": "10 P1 + 10 P2 (see replication_subset.json)",
+    "repetitions": "incumbent 8, candidates 5 - unchanged from the confirmatory design",
+    "runs_all_five_conditions": 560,
+    "calls_all_five_conditions": 2240,
+    "runs_excluding_gemini": 440,
+    "calls_excluding_gemini": 1760,
+    "arithmetic": "20 tasks x (8 incumbent + N_candidates x 5) runs; x4 stages for calls",
+    "estimated_cost_usd": "roughly $15-40 at public list prices, depending on whether gemini is included; to be recomputed from a pricing manifest before execution"
+  }
+}
