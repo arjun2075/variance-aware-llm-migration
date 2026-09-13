@@ -1,8 +1,8 @@
 # Artifact manifest
 
 **Scientific freeze commit:** `3652060`  
-**Packaging commit:** `dcb385ef66dd2afd7007327b86bb06da6cc0c795`  
-**Generated:** 2026-09-13T08:04:27.297320+00:00  
+**Packaging commit:** `ada9d16c14fa298d73bf21ac749b7b0768cc91cf`  
+**Generated:** 2026-09-13T08:06:11.854457+00:00  
 **Tests:** 451 passed, 1 skipped
 
 Machine-readable form: `ARTIFACT_MANIFEST.json`.
