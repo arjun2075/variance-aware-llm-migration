@@ -8,6 +8,32 @@ requires no model or API calls.**
 
 ---
 
+## 0. Two different things you might want to do
+
+|   | Analysis reproduction | Model-call re-execution |
+|---|---|---|
+| What it does | Recomputes every reported statistic, figure and table from the persisted ledger of 20,160 recorded calls | Issues fresh calls to language models and builds a new ledger |
+| Needed to check the paper's claims? | **Yes — this is the supported path** | **No** |
+| Requires API keys or credentials? | **No** | Yes — your own |
+| Requires network access? | No (one optional embedding model download) | Yes |
+| Cost | Free | You pay your providers |
+| Determinism | Bit-for-bit: `pairwise_results.json` hashes to `2195d0d414409db0...` | Not reproducible — model outputs vary, and one condition was a mutable alias |
+| How | `REPRODUCE.md` §§3-6 | `scripts/run_experiment.py`, after supplying your own adapter |
+
+**Analysis reproduction is fully supported and self-contained.** Everything the
+paper reports is recomputed from `results/run/calls.jsonl`, which is included.
+
+**Model-call re-execution is not necessary to reproduce any reported
+statistic,** and it is not expected to reproduce the same numbers: the study's
+whole subject is that these pipelines vary run to run. The original runs were
+executed through a managed execution path whose transport component is not part
+of this public artifact (see §11). To re-execute, supply your own provider
+endpoints and credentials and implement a `ProviderAdapter`
+(`src/vaml/adapters/base.py`); `src/vaml/adapters/public.py` shows a direct
+public-API implementation.
+
+---
+
 ## 1. What this repository reproduces
 
 For an incumbent model **A** and candidate **B**, the study asks whether the
@@ -203,3 +229,64 @@ ledger is sufficient to reproduce every reported statistic.
 Code in this repository is released under the MIT License (`LICENSE`).
 ContractNLI-derived content in `corpora/pipeline2/` remains under CC BY 4.0 and
 is attributed to its authors.
+
+
+## 11. Relationship to the private artifact, and what was removed
+
+This is the **public mirror**, derived from the private research artifact at
+scientific freeze `3652060`.
+
+The confirmatory runs were executed through a managed execution path operated
+by the author's employer. **Execution-infrastructure identifiers were removed
+from this public artifact because they are not necessary to reproduce any
+reported analysis:** every statistic here is recomputed from the persisted
+ledger, and no analysis makes a model call. Where a provenance field is still
+required, neutral terminology is used — for example `managed_execution_path`
+for the execution environment and `provider_route_A` for an internal adapter
+module.
+
+Removed or neutralized, none of which affects a reported result:
+
+- the corporate name, the internal execution-service name, internal
+  adapter/module names, internal credential-tooling names, and internal
+  transport/proxy product names
+- the internal model-catalog request id `gpt-4o-2024-11-20-oai`, replaced by the
+  public model id `gpt-4o-2024-11-20`. This is a 1:1 substitution: the catalog
+  suffix was a routing marker, the served snapshot was the public dated
+  one, and the canonical id that every analysis keys off is unchanged
+  (`protocol/canonical_model_map.json`)
+- the compiled transport-helper binary, which was specific to that execution
+  path
+- personal filesystem paths and corporate-only operational metadata
+
+**What was deliberately kept,** because it is scientifically necessary:
+estimands and analysis code; synthetic Pipeline 1 inputs; the full call ledger
+and all model outputs; ContractNLI *sampling metadata* (never the raw dataset,
+see §8); public immutable model ids; all seeds; every figure and table; all
+strengthening analyses; the `vamigrate` CLI; and the complete audit history,
+including Amendment 001 and the analysis-bug quarantine.
+
+`protocol/protocol_lock.json` records the consequence honestly: **all 16
+task-corpus hashes verify unchanged**, while six infrastructure/source files no
+longer match the frozen hashes because their docstrings and comments were
+rewritten. Those rewrites are textual only.
+
+A private record proving this artifact derives from freeze `3652060` is
+retained by the author and is not published, because it enumerates the
+identifiers this mirror exists to remove.
+
+### No reproducibility was lost
+
+Every reported statistic reproduces bit-for-bit from this public tree. Re-running
+the confirmatory analysis regenerates `results/analysis/pairwise_results.json`
+identical to the copy shipped here (`2195d0d414409db0...`).
+
+Note for anyone comparing against the private artifact: that file's SHA-256
+differs between the two (`4bfc7317e4a811cd...` privately). The difference is
+entirely the model-id label — all **1,320** leaf values are identical except
+**56** occurrences of the incumbent's id string, and **zero numeric values
+change**. No statistic, interval or verdict differs. The one
+capability that is genuinely unavailable here — re-running the original calls
+through the original managed execution path — was already unavailable to any
+external reader of the private artifact, and is not required to verify any
+claim in the paper.
